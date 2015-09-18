@@ -1,0 +1,65 @@
+﻿@model IEnumerable<App.Models.Image>
+@{
+    ViewBag.Title = "Галерия";
+}
+
+
+@section styles {
+    @Styles.Render("~/bundles/unitegallery-styles")
+    @Styles.Render("~/bundles/dropzone-styles")
+}
+
+<h1>@ViewBag.Title</h1>
+
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("SaveUploadedFile", "Gallery", FormMethod.Post,
+                            new { enctype = "multipart/form-data", @class = "dropzone" }))
+        {
+            <div class="dz-message" style="margin-top:40px;" data-dz-message><span>Завлачи и пусни снимки тук за да ги качиш в сайта!</span></div>
+        }
+    </div>
+</div>
+
+<style>
+    .dropzone {
+    border: 3px solid gray;
+    width:90%;
+    margin: 20px auto;
+
+}
+</style>
+
+<div id="gallery" style="display:none;">
+
+    @foreach (var image in Model)
+    {
+        var imgPathThumb = image.ImagePath + "_thumb.jpg";
+        var imgPathLarge = image.ImagePath + "_large.jpg";
+        <a href="@Url.Action("DeleteGalleryImage", "Gallery", new  { id = image.Id })" target="_self">
+            <img src="../@imgPathThumb"
+                 data-image="../@imgPathLarge"
+                 style="display:none">
+        </a>
+    }
+
+</div>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/unitegallery-scripts")
+    @Scripts.Render("~/bundles/dropzone-scripts")
+    
+<script type="text/javascript">
+
+    jQuery(document).ready(function () {
+
+        jQuery("#gallery").unitegallery({
+            tile_show_link_icon: true,
+        });
+
+    });
+
+</script>
+}

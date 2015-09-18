@@ -1,0 +1,26 @@
+﻿@model IEnumerable<App.Models.ViewModels.ReservationViewModel>
+
+@foreach (var Reservation in Model)
+{
+    <tr>
+        <td>№ @Reservation.Id</td>
+        <td><span data-toggle="tooltip" title="Телефон: @Reservation.FirstName">@Reservation.FirstName</span></td>
+        <td><span data-toggle="tooltip" title="@Reservation.ArrivalDate.ToString("dd/MM/yyyy HH:mm")">@Reservation.ArrivalDate.ToString("dd/MM/yyyy")</span></td>
+        <td><span data-toggle="tooltip" title="@Reservation.DepartureDate.ToString("dd/MM/yyyy HH:mm")">@Reservation.DepartureDate.ToString("dd/MM/yyyy")</span></td>
+        <td>
+            @if (Reservation.IsConfirmed)
+            {
+                <a href="@Url.Action("ToggleConfirmation", new { reservationId = Reservation.Id, isConfirmed = Reservation.IsConfirmed })" data-toggle="tooltip" class="fa fa-thumbs-o-down text-danger" title="Премахни потвърждението на резервацията!"></a>
+            }
+            else
+            {
+                <a href="@Url.Action("ToggleConfirmation", new { reservationId = Reservation.Id, isConfirmed = Reservation.IsConfirmed })" data-toggle="tooltip" class="fa fa-thumbs-o-up text-success" title="Потвърди резервацията!"></a>
+            }
+        </td>
+        <td>
+            <a href="#"><img src="~/Areas/Administration/Content/img/preview-icon.png" data-toggle="tooltip" title="Преглед" /></a>
+            <a href="@Url.Action("Edit", new { id = Reservation.Id })"><img src="~/Areas/Administration/Content/img/edit-icon.png" data-toggle="tooltip" title="Редакция" /></a>
+            <a onclick="return confirm('Сигурни ли сте, че искате да изтриете?');" href="@Url.Action("Delete", new { id = Reservation.Id })"><img src="~/Areas/Administration/Content/img/delete-icon.png" data-toggle="tooltip" title="Изтриване" /></a>
+        </td>
+    </tr>
+}

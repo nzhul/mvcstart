@@ -1,0 +1,26 @@
+﻿@model IEnumerable<App.Models.ViewModels.PageViewModel>
+@{
+    ViewBag.Title = "Допълнителни страници";
+}
+
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-4">
+        <h3>@ViewBag.Title</h3>
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>Страница</th>
+                    <th style="text-align:center;"><img src="~/Areas/Administration/Content/img/cog-icon.png" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                @Html.Partial("Partials/_Pages", Model)
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-primary" href="@Url.Action("Create")">Добави страница</a>
+    </div>
+</div>

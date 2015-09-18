@@ -1,0 +1,15 @@
+﻿@model App.Web.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+	<div class="col-md-12">
+		<h1>@ViewBag.Title</h1>
+	</div>
+</div>
+
+@section scripts {
+@Html.Partial("~/Views/Shared/_QuickReservationScripts.cshtml")
+}

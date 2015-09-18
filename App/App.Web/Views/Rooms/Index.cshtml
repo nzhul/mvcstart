@@ -1,0 +1,16 @@
+﻿@model IEnumerable<App.Models.ViewModels.RoomViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="breadcrumb breadcrumb-1 pos-center">
+    <h1>НАШИТЕ СТАИ</h1>
+</div>
+<div class="content">
+    <!-- Content Section -->
+    <div class="container margint60">
+        <div class="row">
+            @Html.Partial("~/Views/Home/Partials/_HomeFeaturedRooms.cshtml", Model)
+        </div>
+    </div>
+</div>

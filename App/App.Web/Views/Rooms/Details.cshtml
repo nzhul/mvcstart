@@ -1,0 +1,64 @@
+﻿@model App.Web.Models.RoomDetailsViewModel
+
+<div class="breadcrumb breadcrumb-1 pos-center">
+    <h1 class="title-uppercase">@Model.TheRoom.Name</h1>
+</div>
+<div class="content">
+    <!-- Content Section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Room Gallery Slider -->
+                <div class="room-gallery">
+                    <div class="margint40 marginb20"><h4>СНИМКИ НА СТАЯТА</h4></div>
+                    <div class="flexslider-thumb falsenav">
+                        <ul class="slides">
+                            @if (Model.TheRoom.Images != null)
+                            {
+                                foreach (var Image in Model.TheRoom.Images)
+                                {
+                                    string thumbUrl = Image.ImagePath + "_detailsSmallThumb.jpg";
+                                    string bigImgUrl = Image.ImagePath + "_large.jpg";
+                                    <li data-thumb="/@thumbUrl"><img alt="@Model.TheRoom.Name" class="img-responsive" src="/@bigImgUrl" /></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 clearfix">
+                <!-- Room Information -->
+                <div class="col-lg-8 clearfix col-sm-8">
+                    <h4>ОПИСАНИЕ НА СТАЯТА</h4>
+                    <p>@Html.Raw(Model.TheRoom.Description) </p>
+                </div>
+                <div class="col-lg-4 clearfix col-sm-4">
+                    <div class="room-services">
+                        <!-- Room Services -->
+                        <h4>УДОБСТВА</h4>
+                        <ul class="room-services">
+                            @if (Model.TheRoom.RoomFeature != null)
+                            {
+                                foreach (var RoomFeature in Model.TheRoom.RoomFeature)
+                                {
+                                    <li><i class="@RoomFeature.IconName"></i> @RoomFeature.Name </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12 clearfix">
+                    <h4>ДРУГИ ПОДОБНИ СТАЙ</h4>
+                    @if (Model.SimilarRooms != null)
+                    {
+                        @Html.Partial("~/Views/Home/Partials/_HomeFeaturedRooms.cshtml", Model.SimilarRooms)
+                    }
+                </div>
+            </div>
+            <div class="col-lg-3 clearfix">
+                @Html.Partial("~/Views/Shared/_Sidebar.cshtml");
+                @section scripts { @Html.Partial("~/Views/Shared/_QuickReservationScripts.cshtml") }
+            </div>
+        </div>
+    </div>
+</div>

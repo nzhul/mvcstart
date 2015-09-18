@@ -1,0 +1,61 @@
+﻿@model IEnumerable<App.Models.Image>
+@{
+    ViewBag.Title = "Галерия";
+}
+
+
+@section styles {
+    @Styles.Render("~/bundles/unitegallery-styles")
+    @Styles.Render("~/bundles/dropzone-styles")
+}
+
+<div class="breadcrumb breadcrumb-1 pos-center">
+    <h1 class="title-uppercase">@ViewBag.Title</h1>
+</div>
+
+
+<div class="content">
+    <!-- Content Section -->
+    <div class="container margint60">
+        <div class="row">
+            <div class="col-lg-9">
+                <div id="gallery" style="display:none;">
+
+                    @foreach (var image in Model)
+                    {
+                        var imgPathThumb = image.ImagePath + "_thumb.jpg";
+                        var imgPathLarge = image.ImagePath + "_large.jpg";
+                        <a href="#">
+                            <img src="../@imgPathThumb"
+                                 data-image="../@imgPathLarge"
+                                 style="display:none">
+                        </a>
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-3">
+                @Html.Partial("~/Views/Shared/_Sidebar.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+@Html.Partial("~/Views/Shared/_QuickReservationScripts.cshtml")
+ 
+    @Scripts.Render("~/bundles/unitegallery-scripts")
+    @Scripts.Render("~/bundles/dropzone-scripts")
+
+    <script type="text/javascript">
+
+    jQuery(document).ready(function () {
+
+        jQuery("#gallery").unitegallery({
+        });
+
+    });
+
+    </script>
+}

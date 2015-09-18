@@ -1,0 +1,9 @@
+﻿@model IEnumerable<App.Models.Image>
+
+<ul class="slides">
+    @foreach (var Image in Model)
+    {
+        var path = Image.ImagePath + "_indexThumb.jpg";
+        <li style="height:222px;"><img class="img-responsive" src="/@path" /></li>
+    }
+</ul>

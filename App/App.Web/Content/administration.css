@@ -1,0 +1,100 @@
+﻿/* Administration styling*/
+/*Table CSS*/
+
+table
+{
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid gray;
+    box-shadow: 2px 2px 0px gray;
+}
+table th
+{
+	padding: 8px;
+	font-weight: bold;
+	font-size: 14px;
+	color: gray;
+	border-bottom: 1px dashed gray;
+    background: #e5e5e5;
+    
+}
+table td
+{
+	padding: 5px 5px 5px 5px;
+	color: gray;
+}
+table tbody tr:hover td
+{
+    color: #6a6a6a;
+	background: #e5e5e5;
+}
+
+table th, table td {text-align:center;}
+
+/*Table CSS END*/
+
+.dab-input-label {
+    color: black;
+    font-size:14px;
+}
+
+.field-validation-error {color:red;}
+
+
+/* Administration styling */
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.thumbnail-hover {
+    background: rgba(0, 0, 0, 0.80);
+    width: 77px;
+    height: 25px;
+    position: relative;
+    z-index: 2;
+    left: -83px;
+    top: 1px;
+    float: left;
+    margin-right:-79px;
+    margin-top:65px;
+    text-align:center;
+    font-size:12px;
+    padding:3px 0 0 0px;
+}
+
+.thumbnail-hover.is-primary{
+    
+    color:white;
+}
+
+.product-image-thumbnail-admin {
+    float: left; 
+    width: 77px;
+    margin: 5px 6px -5px 0px;
+    border: 1px solid black;
+}
+
+.popup-ajax {
+    cursor:pointer;
+}
+
+.admin-hover-image {
+    position:absolute;
+    margin: -240px 0 0 -100px;
+    border: 1px solid black;
+    box-shadow: rgba(0,0,0,0.7) 3px 3px 3px;
+    visibility:hidden;
+}
+
+.upload-img-remove-icon {
+    float:right;
+    position:relative;
+    top:-20px;
+    left:-100px;
+}
+
+.upload-container .upload {
+    margin-top:10px;
+}

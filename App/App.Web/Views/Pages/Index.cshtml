@@ -1,0 +1,18 @@
+﻿@model App.Models.ViewModels.PageViewModel
+<div class="breadcrumb breadcrumb-1 pos-center">
+    <h1 class="title-uppercase">@Model.Title</h1>
+</div>
+<div class="content">
+    <!-- Content Section -->
+    <div class="container margint60">
+        <div class="row">
+            <div class="col-lg-9">
+               @Html.Raw(@Model.Content) 
+            </div>
+            <div class="col-lg-3">
+                @Html.Partial("~/Views/Shared/_Sidebar.cshtml");
+                @section scripts { @Html.Partial("~/Views/Shared/_QuickReservationScripts.cshtml") }
+            </div>
+        </div>
+    </div>
+</div>

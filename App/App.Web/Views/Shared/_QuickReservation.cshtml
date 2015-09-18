@@ -1,0 +1,98 @@
+﻿<div class="quick-reservation-container">
+    <div class="quick-reservation clearfix">
+        <div class="title-quick pos-center margint30">
+            <h5>БЪРЗА РЕЗЕРВАЦИЯ</h5>
+            <div class="line"></div>
+        </div>
+        <div class="reserve-form-area">
+            <form action="#" method="post" id="ajax-reservation-form">
+                <div class="reservation-view-check">
+                    <label>ПРИСТИГАНЕ</label>
+                    <input type="text" id="dpd1" name="ArrivalDate" class="date-selector" placeholder="&#xf073;" />
+                    <label>ОСВОБОЖДАМАНЕ</label>
+                    <input type="text" id="dpd2" name="DepartureDate" class="date-selector" placeholder="&#xf073;" />
+                    <div class="pull-left type clearfix">
+                        <label>ВЪЗРАСТНИ</label>
+                        <select name="Adults" class="pretty-select">
+                            <option selected="selected" value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="pull-left rooms clearfix">
+                        <label>ДЕЦА</label>
+                        <select name="Childrens" class="pretty-select">
+                            <option selected="selected" value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="pull-left clearfix dab-wide-select-box">
+                        <label>ВИД СТАЯ</label>
+                        <select name="RoomCategoryId" class="pretty-select room-types-ddl">
+                            <option selected="selected" value="0">Loading ...</option>
+                        </select>
+                    </div>
+                    <div class="pull-left clearfix dab-wide-select-box">
+                        <label>СТАЯ</label>
+                        <img class="dab-rooms-loading" style="display:none;position:absolute;float:right;margin-top:11px;margin-left:100px;" src="~/Content/images/loading.gif" />
+                        <select name="RoomId" class="pretty-select rooms-ddl">
+                            <option selected="selected" value="0">Loading ...</option>
+                        </select>
+                    </div>
+                    <div class="pull-left search-button clearfix">
+                        <div class="button-style-1">
+                            <a class="res-submit" style="cursor: pointer;">РЕЗЕРВИРАЙ</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="reservation-view-confirm" style="display:none;">
+                    <span class="label label-success">Стаята е свободна за резервация!</span>
+                    <span class="label label-danger confirm-validation-label" style="display:none;">Моля попълнете полетата!</span>
+                    <label>ИМЕ</label>
+                    <input type="text" name="FirstName" />
+                    <label>ФАМИЛИЯ</label>
+                    <input type="text" name="LastName" />
+                    <label>ТЕЛЕФОН</label>
+                    <input type="text" name="Phone" />
+                    <label>EMAIL</label>
+                    <input type="email" name="Email" />
+                    <div class="pull-left search-button clearfix">
+                        <div class="button-style-1">
+                            <a class="confirm-reservation-submit" style="cursor: pointer;">ПОТВЪРДИ</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="reservation-view-loading" style="height:262px; display:none;">
+                    <div style="margin: 28px 0 0 90px;">
+                        <img src="~/Content/images/big-loader.gif" />
+                    </div>
+                    
+                </div>
+                <div class="reservation-view-success" style="height:262px;display:none;">
+                    
+                    <div style="width:225px;height:280px;background-color: rgba(255, 255, 255, 0.7);padding-top:45px;margin-top:20px;">
+                        <h5 class="text-center" style="color:black;font-size:16px;line-height:20px;text-transform:uppercase;font-weight:bold;">Резервацията беше <br/>приета успешно!</h5>
+                        <i style="color:#238902;font-size:60px;margin: 23px 0 0 80px;" class="fa fa-check-square"></i>
+                        <h5 class="text-center" style="color:black;font-size:12px;line-height:20px;text-transform:uppercase;margin-top:25px;">Ще се свържем с вас<br/> въжможно най-скоро!</h5>
+                    </div>
+                </div>
+                <div class="reservation-view-notAvailableRoom" style="height:262px; display:none;">
+                    <div class="alert alert-danger text-center" style="margin-top:10px;">
+                        <strong>Стаята е заета за посочения период!</strong>
+                        <hr />
+                        Моля изберете друг период или се свържете с нас на телефон: 08887776585!
+                    </div>
+                    <div class="button-style-1">
+                        <a class="reservation-back-btn" style="margin: 0px 0 0 27px;position:relative; top:-6px;cursor:pointer;">НАЗАД</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

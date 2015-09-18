@@ -1,0 +1,10 @@
+﻿@model App.Models.InputModels.CreateAttractionInputModel
+@{
+    ViewBag.Title = "Редактиране на Атракция";
+    ViewBag.FormModeText = "Запази";
+    ViewBag.FormMode = "Edit";
+}
+
+<div class="container">
+    @{Html.RenderPartial("Partials/_CreateEditAttractionPartial", Model);}
+</div>

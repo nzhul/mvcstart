@@ -1,0 +1,13 @@
+﻿@model IEnumerable<App.Models.ViewModels.PageViewModel>
+
+@foreach (var Page in Model)
+{
+    <tr>
+        <td>@Page.Title</td>
+        <td>
+            <a href="@Url.Action("Index", "Pages", new { area = "", id = Page.Id })"><img src="~/Areas/Administration/Content/img/preview-icon.png" /></a>
+            <a href="@Url.Action("Edit", new { @id = Page.Id })"><img src="~/Areas/Administration/Content/img/edit-icon.png" /></a>
+            <a onclick="return confirm('Сигурни ли сте, че искате да изтриете?');" href="@Url.Action("Delete", new { @id = Page.Id })"><img src="~/Areas/Administration/Content/img/delete-icon.png" /></a>
+        </td>
+    </tr>
+}

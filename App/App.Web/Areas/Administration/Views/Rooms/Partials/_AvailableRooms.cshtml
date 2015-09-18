@@ -1,0 +1,15 @@
+﻿@model IEnumerable<App.Models.ViewModels.RoomViewModel>
+
+@foreach (var Room in Model)
+{
+    <tr>
+        <td><img src="~/Areas/Administration/Content/img/picture-icon.png" /></td>
+        <td>@Room.RoomNumber</td>
+        @*<td><a href="#" class="btn btn-primary btn-xs">Настани</a></td>*@
+        <td>
+            <a href="@Url.Action("Details", "Rooms", new { area = "", id = Room.Id })"><img src="~/Areas/Administration/Content/img/preview-icon.png" /></a>
+            <a href="@Url.Action("Edit", new { @id = Room.Id })"><img src="~/Areas/Administration/Content/img/edit-icon.png" /></a>
+            <a onclick="return confirm('Сигурни ли сте, че искате да изтриете?');" href="@Url.Action("Delete", new { @id = Room.Id })"><img src="~/Areas/Administration/Content/img/delete-icon.png" /></a>
+        </td>
+    </tr>
+}

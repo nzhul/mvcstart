@@ -1,0 +1,10 @@
+﻿@model App.Models.InputModels.CreateReservationInputModel
+@{
+    ViewBag.Title = "Редактиране на Резервация";
+    ViewBag.FormModeText = "Запази";
+    ViewBag.FormMode = "Edit";
+}
+
+<div class="container">
+    @{Html.RenderPartial("Partials/_CreateEditReservationPartial", Model);}
+</div>

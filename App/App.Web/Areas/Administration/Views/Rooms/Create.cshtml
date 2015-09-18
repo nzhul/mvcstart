@@ -1,0 +1,10 @@
+﻿@model App.Models.InputModels.CreateRoomInputModel
+@{
+    ViewBag.Title = "Добавяне на Стая";
+    ViewBag.FormModeText = "Добави";
+    ViewBag.FormMode = "Create";
+}
+
+<div class="container">
+    @{Html.RenderPartial("Partials/_CreateEditRoomPartial", Model);}
+</div>

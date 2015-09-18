@@ -1,0 +1,6 @@
+﻿@model IEnumerable<App.Models.ViewModels.RoomFeatureViewModel>
+
+@foreach (var Feature in Model)
+{
+    <li><i class="@Feature.IconName"></i> @Feature.Name</li>
+}
