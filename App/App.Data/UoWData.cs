@@ -31,14 +31,14 @@ namespace App.Data
             get { return this.GetRepository<ApplicationUser>(); }
         }
 
-        public IRepository<Room> Rooms
+        public IRepository<Item> Rooms
         {
-            get { return this.GetRepository<Room>(); }
+            get { return this.GetRepository<Item>(); }
         }
 
-        public IRepository<RoomCategory> RoomCategories
+        public IRepository<ItemCategory> RoomCategories
         {
-            get { return this.GetRepository<RoomCategory>(); }
+            get { return this.GetRepository<ItemCategory>(); }
         }
 
         public IRepository<RoomFeature> RoomFeatures

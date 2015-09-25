@@ -27,7 +27,7 @@ namespace App.Data.Migrations
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    var newRoomCategory = new RoomCategory
+                    var newRoomCategory = new ItemCategory
                     {
                         Name = "Room category " + i,
                         DateAdded = DateTime.Now
@@ -44,15 +44,14 @@ namespace App.Data.Migrations
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    var newRoom = new Room
+                    var newRoom = new Item
                     {
                         Name = "Room " + i,
                         Price = rand.Next(30,80),
                         Summary = "Short Description of the room " + i,
                         Description = "Long Description of the room " + i,
-                        RoomNumber = 100 + i,
                         DateAdded = DateTime.Now,
-                        RoomCategoryId = rand.Next(1, 5)
+                        ItemCategoryId = rand.Next(1, 5)
                     };
                     context.Rooms.Add(newRoom);
                 }

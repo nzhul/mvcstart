@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace App.Models
 {
-    public class RoomCategory
+    public class ItemCategory
     {
-        private ICollection<Room> rooms;
-        public RoomCategory()
+        private ICollection<Item> items;
+        public ItemCategory()
         {
-            this.rooms = new HashSet<Room>();
+            this.items = new HashSet<Item>();
         }
 
         [Key]
@@ -28,10 +28,10 @@ namespace App.Models
 
         public int DisplayOrder { get; set; }
 
-        public virtual ICollection<Room> Rooms
+        public virtual ICollection<Item> Items
         {
-            get { return this.rooms; }
-            set { this.rooms = value; }
+            get { return this.items; }
+            set { this.items = value; }
         }
     }
 }

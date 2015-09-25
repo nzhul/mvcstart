@@ -8,11 +8,11 @@ namespace App.Models
 {
     public class RoomFeature
     {
-        private ICollection<Room> rooms;
+        private ICollection<Item> rooms;
 
         public RoomFeature()
         {
-            this.rooms = new HashSet<Room>();
+            this.rooms = new HashSet<Item>();
         }
 
         public int Id { get; set; }
@@ -21,7 +21,7 @@ namespace App.Models
 
         public string IconName { get; set; }
 
-        public virtual ICollection<Room> Rooms
+        public virtual ICollection<Item> Rooms
         {
             get { return this.rooms; }
             set { this.rooms = value; }

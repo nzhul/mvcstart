@@ -144,7 +144,7 @@ namespace App.Data.Service
 
         public IEnumerable<Image> GetRandomRoomImages()
         {
-            Room randomRoom = this.Data.Rooms.All().OrderBy(r => Guid.NewGuid()).FirstOrDefault();
+            Item randomRoom = this.Data.Rooms.All().OrderBy(r => Guid.NewGuid()).FirstOrDefault();
 
             if (randomRoom != null)
             {

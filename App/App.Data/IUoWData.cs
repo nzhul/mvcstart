@@ -12,8 +12,8 @@ namespace App.Data
     public interface IUoWData
     {
         IRepository<ApplicationUser> Users { get; }
-        IRepository<Room> Rooms { get; }
-        IRepository<RoomCategory> RoomCategories { get; }
+        IRepository<Item> Rooms { get; }
+        IRepository<ItemCategory> RoomCategories { get; }
         IRepository<RoomFeature> RoomFeatures { get; }
         IRepository<Image> Images { get; }
         IRepository<Attraction> Attractions { get; }

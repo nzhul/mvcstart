@@ -6,22 +6,20 @@ using System.Threading.Tasks;
 
 namespace App.Models
 {
-    public class Room
+    public class Item
     {
         private ICollection<Image> images;
-        private ICollection<RoomFeature> roomFeatures;
-        private ICollection<Reservation> reservations;
+        private ICollection<RoomFeature> itemFeatures;
+        //private ICollection<Reservation> reservations;
 
-        public Room()
+        public Item()
         {
             this.images = new HashSet<Image>();
-            this.roomFeatures = new HashSet<RoomFeature>();
-            this.reservations = new HashSet<Reservation>();
+            this.itemFeatures = new HashSet<RoomFeature>();
+            //this.reservations = new HashSet<Reservation>();
         }
 
         public int Id { get; set; }
-
-        public int RoomNumber { get; set; }
 
         public string Name { get; set; }
 
@@ -39,9 +37,9 @@ namespace App.Models
 
         public int DisplayOrder { get; set; }
 
-        public int RoomCategoryId { get; set; }
+        public int ItemCategoryId { get; set; }
 
-        public virtual RoomCategory RoomCategory { get; set; }
+        public virtual ItemCategory ItemCategory { get; set; }
 
         public virtual ICollection<Image> Images
         {
@@ -49,16 +47,16 @@ namespace App.Models
             set { this.images = value; }
         }
 
-        public virtual ICollection<Reservation> Reservations
-        {
-            get { return this.reservations; }
-            set { this.reservations = value; }
-        }
+        //public virtual ICollection<Reservation> Reservations
+        //{
+        //    get { return this.reservations; }
+        //    set { this.reservations = value; }
+        //}
 
-        public virtual ICollection<RoomFeature> RoomFeatures
+        public virtual ICollection<RoomFeature> ItemFeatures
         {
-            get { return this.roomFeatures; }
-            set { this.roomFeatures = value; }
+            get { return this.itemFeatures; }
+            set { this.itemFeatures = value; }
         }
     }
 }

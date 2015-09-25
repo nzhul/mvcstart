@@ -19,8 +19,8 @@ namespace App.Data
             return new ApplicationDbContext();
         }
 
-        public IDbSet<Room> Rooms { get; set; }
-        public IDbSet<RoomCategory> RoomCategories { get; set; }
+        public IDbSet<Item> Rooms { get; set; }
+        public IDbSet<ItemCategory> RoomCategories { get; set; }
         public IDbSet<RoomFeature> RoomFeatures { get; set; }
         public IDbSet<Image> Images { get; set; }
         public IDbSet<Attraction> Attractions { get; set; }

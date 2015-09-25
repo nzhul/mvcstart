@@ -50,7 +50,7 @@ namespace App.Data.Service
             {
                 for (int i = 0; i < inputModel.SelectedRoomIds.Count; i++)
                 {
-                    Room theRoom = this.Data.Rooms.Find(inputModel.SelectedRoomIds[i]);
+                    Item theRoom = this.Data.Rooms.Find(inputModel.SelectedRoomIds[i]);
                     newReservation.OccupiedRooms.Add(theRoom);
                     this.Data.SaveChanges();
                 }
@@ -100,7 +100,7 @@ namespace App.Data.Service
         {
             foreach (var roomId in inputModel.SelectedRoomIds)
             {
-                Room currentSelectedRoom = this.Data.Rooms.Find(roomId);
+                Item currentSelectedRoom = this.Data.Rooms.Find(roomId);
                 IEnumerable<Reservation> reservationsWithThatRoom = this.Data.Reservations.All().Where(r => r.OccupiedRooms.Select(or => or.Id).Contains(currentSelectedRoom.Id));
 
                 if (reservationsWithThatRoom.Count() > 0)
@@ -218,7 +218,7 @@ namespace App.Data.Service
 
         public bool IsRoomAvailable(QuickReservationInputModel inputModel)
         {
-            Room currentSelectedRoom = this.Data.Rooms.Find(inputModel.RoomId);
+            Item currentSelectedRoom = this.Data.Rooms.Find(inputModel.RoomId);
             IEnumerable<Reservation> approvedReservationsWithThatRoom = this.Data.Reservations.All().Where(r => r.OccupiedRooms.Select(or => or.Id).Contains(currentSelectedRoom.Id) && r.IsConfirmed == true);
 
             if (approvedReservationsWithThatRoom.Count() > 0)
@@ -253,7 +253,7 @@ namespace App.Data.Service
             newReservation.Email = inputModel.Email;
 
 
-            Room theRoom = this.Data.Rooms.Find(inputModel.RoomId);
+            Item theRoom = this.Data.Rooms.Find(inputModel.RoomId);
             newReservation.OccupiedRooms.Add(theRoom);
             this.Data.SaveChanges();
 
@@ -265,14 +265,14 @@ namespace App.Data.Service
 
             MailMessage mailMessage = new MailMessage(sender, receiver);
             mailMessage.IsBodyHtml = true;
-            mailMessage.Subject = "Запитване за резервация: " + theRoom.RoomNumber + ": " + theRoom.Name;
+            mailMessage.Subject = "Запитване за резервация: " + theRoom.Name;
             mailMessage.Body = "Име: " + (newReservation.FirstName != null ? newReservation.FirstName : "--липсва--") + "<br/>" +
                                "Фамилия: " + (newReservation.LastName != null ? newReservation.LastName : "--липсва--") + "<br/>" +
                                "Email: " + (newReservation.Email != null ? newReservation.Email : "--липсва--") + "<br/>" +
                                "Телефон: " + (newReservation.Phone != null ? newReservation.Phone : "--липсва--") + "<br/><br/>" +
                                "Настаняване: " + (newReservation.Phone != null ? newReservation.ArrivalDate.ToShortDateString() : "--липсва--") + "<br/><br/>" +
                                "Освобождаване: " + (newReservation.Phone != null ? newReservation.DepartureDate.ToShortDateString() : "--липсва--") + "<br/><br/>" +
-                               "Стая: " + theRoom.RoomNumber + ": " + theRoom.Name;
+                               "Стая: " + theRoom.Name;
 
             SmtpClient smtpClient = new SmtpClient();
 
