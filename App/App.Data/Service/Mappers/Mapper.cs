@@ -11,7 +11,7 @@ namespace App.Data.Service.Mappers
 {
     public class Mapper
     {
-        public ItemViewModel MapRoomViewModel(Item room)
+        public ItemViewModel MapItemViewModel(Item room)
         {
             ItemViewModel model = new ItemViewModel();
             model.Id = room.Id;

@@ -10,11 +10,11 @@ using System.Web.Mvc;
 
 namespace App.Data.Service
 {
-    public interface IRoomsService
+    public interface IItemsService
     {
-        ItemViewModel GetRoomById(int id);
+        ItemViewModel GetItemById(int id);
 
-        CreateRoomInputModel GetRoomInputModelById(int id);
+        CreateItemInputModel GetItemInputModelById(int id);
 
         /// <summary>
         /// Get all rooms from the database
@@ -26,7 +26,7 @@ namespace App.Data.Service
         /// Creates new Room in the database
         /// </summary>
         /// <returns>Returns the Id of the new Room</returns>
-        bool CreateRoom(CreateRoomInputModel room);
+        bool CreateRoom(CreateItemInputModel room);
 
         bool RoomExists(int id);
 
@@ -34,21 +34,21 @@ namespace App.Data.Service
 
         IEnumerable<ItemCategoryViewModel> GetRoomCategories();
 
-        int CreateRoomCategory(CreateRoomCategoryInputModel roomCategory);
+        int CreateRoomCategory(CreateItemCategoryInputModel roomCategory);
 
-        CreateRoomCategoryInputModel GetRoomCategoryInputModelById(int id);
+        CreateItemCategoryInputModel GetRoomCategoryInputModelById(int id);
 
-        bool UpdateRoomCategory(int id, CreateRoomCategoryInputModel inputModel);
+        bool UpdateRoomCategory(int id, CreateItemCategoryInputModel inputModel);
 
-        bool UpdateRoom(int id, CreateRoomInputModel inputModel);
+        bool UpdateRoom(int id, CreateItemInputModel inputModel);
 
         IEnumerable<ItemFeatureViewModel> GetRoomFeatures();
 
-        int CreateRoomFeature(CreateRoomFeatureInputModel featureInput);
+        int CreateRoomFeature(CreateItemFeatureInputModel featureInput);
 
-        CreateRoomFeatureInputModel GetRoomFeatureInputModelById(int id);
+        CreateItemFeatureInputModel GetRoomFeatureInputModelById(int id);
 
-        bool UpdateRoomFeature(int id, CreateRoomFeatureInputModel roomFeature);
+        bool UpdateRoomFeature(int id, CreateItemFeatureInputModel roomFeature);
 
         bool DeleteRoomFeature(int id);
 

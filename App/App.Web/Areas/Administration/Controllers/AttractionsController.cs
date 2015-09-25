@@ -102,7 +102,7 @@ namespace App.Web.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadPhotos(UploadAttractionPhotoModel uploadData)
+        public ActionResult UploadPhotos(UploadArticlePhotoModel uploadData)
         {
             try
             {

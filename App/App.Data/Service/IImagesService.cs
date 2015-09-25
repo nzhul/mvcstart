@@ -13,7 +13,7 @@ namespace App.Data.Service
     {
         bool UploadImages(UploadPhotoModel uploadData);
 
-        bool UploadImages(UploadAttractionPhotoModel uploadData);
+        bool UploadImages(UploadArticlePhotoModel uploadData);
 
         bool MakePrimary(int imageId, int productId);
 

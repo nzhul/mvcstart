@@ -30,7 +30,7 @@ namespace App.Data.Service
             versions.Add("_large", "width=1139&height=578&crop=auto&scale=both&format=jpg"); //Fit inside 1900x1200 area
 
             int categoryId = uploadData.CategoryId;
-            int roomId = uploadData.RoomId;
+            int roomId = uploadData.ItemId;
             var theRoom = this.Data.Items.Find(roomId);
 
             bool firstLoop = true;
@@ -96,7 +96,7 @@ namespace App.Data.Service
             return true;
         }
 
-        public bool UploadImages(UploadAttractionPhotoModel uploadData)
+        public bool UploadImages(UploadArticlePhotoModel uploadData)
         {
             Dictionary<string, string> versions = new Dictionary<string, string>();
             //Define the versions to generate

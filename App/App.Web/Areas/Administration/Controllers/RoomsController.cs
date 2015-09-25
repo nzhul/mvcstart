@@ -14,13 +14,13 @@ namespace App.Web.Areas.Administration.Controllers
 {
     public class RoomsController : BaseController
     {
-        private readonly IRoomsService roomsService;
+        private readonly IItemsService roomsService;
         private readonly IImagesService imagesService;
         private readonly IUoWData uoWData;
         public RoomsController()
         {
             this.uoWData = new UoWData();
-            this.roomsService = new RoomsService(this.uoWData);
+            this.roomsService = new ItemsService(this.uoWData);
             this.imagesService = new ImagesService(this.uoWData);
         }
 
@@ -39,7 +39,7 @@ namespace App.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            CreateRoomInputModel model = new CreateRoomInputModel();
+            CreateItemInputModel model = new CreateItemInputModel();
             model.Categories = this.roomsService.GetCategories();
             model.AvailableRoomFeatures = this.roomsService.GetAvailableRoomFeatures();
             return View(model);
@@ -47,7 +47,7 @@ namespace App.Web.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateRoomInputModel inputModel)
+        public ActionResult Create(CreateItemInputModel inputModel)
         {
             if (ModelState.IsValid)
             {
@@ -69,11 +69,11 @@ namespace App.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            CreateRoomInputModel model = new CreateRoomInputModel();
+            CreateItemInputModel model = new CreateItemInputModel();
 
             if (this.roomsService.RoomExists(id))
             {
-                model = this.roomsService.GetRoomInputModelById(id);
+                model = this.roomsService.GetItemInputModelById(id);
                 model.Categories = this.roomsService.GetCategories();
                 model.AvailableRoomFeatures = this.roomsService.GetAvailableRoomFeatures();
                 model.SelectedRoomFeatureIds = this.roomsService.GetSelectedRoomFeatureIds(id);
@@ -87,7 +87,7 @@ namespace App.Web.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, CreateRoomInputModel inputModel)
+        public ActionResult Edit(int id, CreateItemInputModel inputModel)
         {
             if (ModelState.IsValid)
             {

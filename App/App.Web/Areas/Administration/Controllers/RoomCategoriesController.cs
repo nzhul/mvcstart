@@ -13,12 +13,12 @@ namespace App.Web.Areas.Administration.Controllers
 {
     public class RoomCategoriesController : BaseController
     {
-        private readonly IRoomsService roomsService;
+        private readonly IItemsService roomsService;
         private readonly IUoWData uoWData;
         public RoomCategoriesController()
         {
             this.uoWData = new UoWData();
-            this.roomsService = new RoomsService(this.uoWData);
+            this.roomsService = new ItemsService(this.uoWData);
         }
 
         [HttpGet]
@@ -36,7 +36,7 @@ namespace App.Web.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateRoomCategoryInputModel categoryInput)
+        public ActionResult Create(CreateItemCategoryInputModel categoryInput)
         {
             if (ModelState.IsValid)
             {
@@ -57,12 +57,12 @@ namespace App.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            CreateRoomCategoryInputModel model = this.roomsService.GetRoomCategoryInputModelById(id);
+            CreateItemCategoryInputModel model = this.roomsService.GetRoomCategoryInputModelById(id);
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, CreateRoomCategoryInputModel roomCategory)
+        public ActionResult Edit(int id, CreateItemCategoryInputModel roomCategory)
         {
             if (ModelState.IsValid)
             {

@@ -9,7 +9,7 @@ namespace App.Models.InputModels
 {
     public class UploadPhotoModel
     {
-        public int RoomId { get; set; }
+        public int ItemId { get; set; }
 
         public int CategoryId { get; set; }
 

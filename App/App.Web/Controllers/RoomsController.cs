@@ -13,14 +13,14 @@ namespace App.Web.Controllers
 {
     public class RoomsController : BaseController
     {
-        private readonly IRoomsService roomsService;
+        private readonly IItemsService roomsService;
         private readonly IUoWData data;
 
 
         public RoomsController()
         {
             this.data = new UoWData();
-            this.roomsService = new RoomsService(this.data);
+            this.roomsService = new ItemsService(this.data);
         }
 
         [HttpGet]
@@ -38,7 +38,7 @@ namespace App.Web.Controllers
         {
             RoomDetailsViewModel model = new RoomDetailsViewModel();
 
-            model.TheRoom = this.roomsService.GetRoomById(id);
+            model.TheRoom = this.roomsService.GetItemById(id);
             model.SimilarRooms = this.roomsService.GetRooms(model.TheRoom.ItemCategoryId).Where(r => r.Id != id);
 
             List<Image> images = model.TheRoom.Images.ToList();

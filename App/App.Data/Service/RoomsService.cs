@@ -13,32 +13,32 @@ using System.IO;
 
 namespace App.Data.Service
 {
-    public class RoomsService : IRoomsService
+    public class ItemsService : IItemsService
     {
         private readonly IUoWData Data;
         private readonly Mapper Mapper;
 
-        public RoomsService(IUoWData data)
+        public ItemsService(IUoWData data)
         {
             this.Data = data;
             this.Mapper = new Mapper();
         }
 
-        public ItemViewModel GetRoomById(int id)
+        public ItemViewModel GetItemById(int id)
         {
-            Item room = this.Data.Items.Find(id);
-            return this.Mapper.MapRoomViewModel(room);
+            Item item = this.Data.Items.Find(id);
+            return this.Mapper.MapItemViewModel(item);
         }
 
-        public CreateRoomInputModel GetRoomInputModelById(int id)
+        public CreateItemInputModel GetItemInputModelById(int id)
         {
             Item room = this.Data.Items.Find(id);
             return MapRoomInputModel(room);
         }
 
-        private CreateRoomInputModel MapRoomInputModel(Item room)
+        private CreateItemInputModel MapRoomInputModel(Item room)
         {
-            CreateRoomInputModel model = new CreateRoomInputModel();
+            CreateItemInputModel model = new CreateItemInputModel();
             model.Id = room.Id;
             model.Name = room.Name;
             model.IsFeatured = room.IsFeatured;
@@ -64,11 +64,11 @@ namespace App.Data.Service
             }
 
 
-            IEnumerable<ItemViewModel> rooms = roomsQueriable.Select(this.Mapper.MapRoomViewModel);
+            IEnumerable<ItemViewModel> rooms = roomsQueriable.Select(this.Mapper.MapItemViewModel);
             return rooms;
         }
 
-        public bool CreateRoom(CreateRoomInputModel room)
+        public bool CreateRoom(CreateItemInputModel room)
         {
             Item newRoom = new Item();
             newRoom.Name = room.Name;
@@ -156,7 +156,7 @@ namespace App.Data.Service
         }
 
 
-        public int CreateRoomCategory(CreateRoomCategoryInputModel roomCategory)
+        public int CreateRoomCategory(CreateItemCategoryInputModel roomCategory)
         {
             ItemCategory newRoomCategory = new ItemCategory();
             newRoomCategory.Name = roomCategory.Name;
@@ -171,15 +171,15 @@ namespace App.Data.Service
         }
 
 
-        public CreateRoomCategoryInputModel GetRoomCategoryInputModelById(int id)
+        public CreateItemCategoryInputModel GetRoomCategoryInputModelById(int id)
         {
             ItemCategory roomCategory = this.Data.ItemCategories.Find(id);
             return MapRoomCategoryInputModel(roomCategory);
         }
 
-        private CreateRoomCategoryInputModel MapRoomCategoryInputModel(ItemCategory roomCategory)
+        private CreateItemCategoryInputModel MapRoomCategoryInputModel(ItemCategory roomCategory)
         {
-            CreateRoomCategoryInputModel model = new CreateRoomCategoryInputModel();
+            CreateItemCategoryInputModel model = new CreateItemCategoryInputModel();
             model.Description = roomCategory.Description;
             model.DisplayOrder = roomCategory.DisplayOrder;
             model.Name = roomCategory.Name;
@@ -188,7 +188,7 @@ namespace App.Data.Service
         }
 
 
-        public bool UpdateRoomCategory(int id, CreateRoomCategoryInputModel roomCategory)
+        public bool UpdateRoomCategory(int id, CreateItemCategoryInputModel roomCategory)
         {
             ItemCategory dbRoomCategory = this.Data.ItemCategories.Find(id);
             if (dbRoomCategory != null)
@@ -207,7 +207,7 @@ namespace App.Data.Service
             }
         }
         
-        public bool UpdateRoom(int id, CreateRoomInputModel inputModel)
+        public bool UpdateRoom(int id, CreateItemInputModel inputModel)
         {
             Item dbRoom = this.Data.Items.Find(id);
             if (dbRoom != null)
@@ -266,7 +266,7 @@ namespace App.Data.Service
         }
 
 
-        public int CreateRoomFeature(CreateRoomFeatureInputModel featureInput)
+        public int CreateRoomFeature(CreateItemFeatureInputModel featureInput)
         {
             ItemFeature newFeature = new ItemFeature();
             newFeature.Name = featureInput.Name;
@@ -278,22 +278,22 @@ namespace App.Data.Service
             return newFeature.Id;
         }
 
-        public CreateRoomFeatureInputModel GetRoomFeatureInputModelById(int id)
+        public CreateItemFeatureInputModel GetRoomFeatureInputModelById(int id)
         {
             ItemFeature roomFeature = this.Data.ItemFeatures.Find(id);
             return MapRoomFeatureInputModel(roomFeature);
         }
 
-        private CreateRoomFeatureInputModel MapRoomFeatureInputModel(ItemFeature roomFeature)
+        private CreateItemFeatureInputModel MapRoomFeatureInputModel(ItemFeature roomFeature)
         {
-            CreateRoomFeatureInputModel model = new CreateRoomFeatureInputModel();
+            CreateItemFeatureInputModel model = new CreateItemFeatureInputModel();
             model.Id = roomFeature.Id;
             model.Name = roomFeature.Name;
             model.IconName = roomFeature.IconName;
             return model;
         }
 
-        public bool UpdateRoomFeature(int id, CreateRoomFeatureInputModel roomFeature)
+        public bool UpdateRoomFeature(int id, CreateItemFeatureInputModel roomFeature)
         {
             ItemFeature dbRoomFeature = this.Data.ItemFeatures.Find(id);
             if (dbRoomFeature != null)

@@ -28,7 +28,7 @@ namespace App.Data.Service
 
         public IEnumerable<ItemViewModel> GetAvailableRooms()
         {
-            return this.Data.Items.All().Select(this.Mapper.MapRoomViewModel);
+            return this.Data.Items.All().Select(this.Mapper.MapItemViewModel);
         }
 
 

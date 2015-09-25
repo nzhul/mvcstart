@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace App.Models.InputModels
 {
-    public class CreateRoomFeatureInputModel
+	public class CreateItemFeatureInputModel
     {
         public int Id { get; set; }
 

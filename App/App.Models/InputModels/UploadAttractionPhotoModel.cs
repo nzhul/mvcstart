@@ -7,7 +7,7 @@ using System.Web;
 
 namespace App.Models.InputModels
 {
-    public class UploadAttractionPhotoModel
+    public class UploadArticlePhotoModel
     {
         public int AttractionId { get; set; }
 

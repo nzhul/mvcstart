@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace App.Models.ViewModels
 {
-    public class ItemViewModel
+	public class ItemViewModel
     {
         private ICollection<ItemFeature> itemFeatures;
 

@@ -9,19 +9,14 @@ using System.Web.Mvc;
 
 namespace App.Models.InputModels
 {
-    public class CreateRoomInputModel
+    public class CreateItemInputModel
     {
-        public CreateRoomInputModel()
+        public CreateItemInputModel()
         {
             this.AvailableRoomFeatures = new List<ItemFeature>();
         }
 
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "Номера на стаята е задължителен!")]
-        [Range(1, int.MaxValue, ErrorMessage = "Моля въведете валидно число!")]
-        [Display(Name = "Номер:")]
-        public int RoomNumber { get; set; }
 
         [Required(ErrorMessage = "Името на стаята е задължително:")]
         [StringLength(250, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 250 символа, минимална 3")]

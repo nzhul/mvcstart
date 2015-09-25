@@ -83,28 +83,28 @@
     <Compile Include="Articles\Article.cs" />
     <Compile Include="DataAnnotations\CheckListAttribute.cs" />
     <Compile Include="Image.cs" />
-    <Compile Include="InputModels\CreateAttractionInputModel.cs" />
+    <Compile Include="InputModels\CreateArticleInputModel.cs" />
     <Compile Include="InputModels\CreatePageInputModel.cs" />
     <Compile Include="InputModels\CreateReservationInputModel.cs" />
-    <Compile Include="InputModels\CreateRoomCategoryInputModel.cs" />
-    <Compile Include="InputModels\CreateRoomFeatureInputModel.cs" />
-    <Compile Include="InputModels\CreateRoomInputModel.cs" />
+    <Compile Include="InputModels\CreateItemCategoryInputModel.cs" />
+    <Compile Include="InputModels\CreateItemFeatureInputModel.cs" />
+    <Compile Include="InputModels\CreateItemInputModel.cs" />
     <Compile Include="InputModels\FrontEnd\QuickReservationInputModel.cs" />
     <Compile Include="InputModels\UploadAttractionPhotoModel.cs" />
     <Compile Include="InputModels\UploadPhotoModel.cs" />
     <Compile Include="Pages\Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservations\Reservation.cs" />
-    <Compile Include="Rooms\Item.cs" />
-    <Compile Include="Rooms\ItemCategory.cs" />
-    <Compile Include="Rooms\ItemFeature.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemCategory.cs" />
+    <Compile Include="Items\ItemFeature.cs" />
     <Compile Include="ViewModels\AllReservationsViewModel.cs" />
-    <Compile Include="ViewModels\AttractionViewModel.cs" />
+    <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
     <Compile Include="ViewModels\ItemFeatureViewModel.cs" />
     <Compile Include="ViewModels\ItemCategoryViewModel.cs" />
-    <Compile Include="ViewModels\RoomViewModel.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -13,12 +13,12 @@ namespace App.Web.Areas.Administration.Controllers
 {
     public class RoomFeaturesController : BaseController
     {
-        private readonly IRoomsService roomsService;
+        private readonly IItemsService roomsService;
         private readonly IUoWData uoWData;
         public RoomFeaturesController()
         {
             this.uoWData = new UoWData();
-            this.roomsService = new RoomsService(this.uoWData);
+            this.roomsService = new ItemsService(this.uoWData);
         }
 
 
@@ -36,7 +36,7 @@ namespace App.Web.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateRoomFeatureInputModel featureInput)
+        public ActionResult Create(CreateItemFeatureInputModel featureInput)
         {
             if (ModelState.IsValid)
             {
@@ -57,12 +57,12 @@ namespace App.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            CreateRoomFeatureInputModel model = this.roomsService.GetRoomFeatureInputModelById(id);
+            CreateItemFeatureInputModel model = this.roomsService.GetRoomFeatureInputModelById(id);
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, CreateRoomFeatureInputModel roomFeature)
+        public ActionResult Edit(int id, CreateItemFeatureInputModel roomFeature)
         {
             if (ModelState.IsValid)
             {

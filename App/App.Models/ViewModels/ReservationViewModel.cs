@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace App.Models.ViewModels
 {
-    public class ReservationViewModel
+	public class ReservationViewModel
     {
         private ICollection<Item> occupiedRooms;
         public ReservationViewModel()

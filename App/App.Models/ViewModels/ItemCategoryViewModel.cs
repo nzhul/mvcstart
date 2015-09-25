@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Models.ViewModels
 {
-    public class ItemCategoryViewModel
+	public class ItemCategoryViewModel
     {
         public int Id { get; set; }
 

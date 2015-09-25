@@ -14,7 +14,7 @@ namespace App.Web.Controllers
     public class HomeController : BaseController
     {
         private readonly IUoWData data;
-        private readonly IRoomsService roomsService;
+        private readonly IItemsService roomsService;
         private readonly IPagesService pagesService;
         private readonly IArticlesService attractionsService;
         private readonly IImagesService imagesService;
@@ -22,7 +22,7 @@ namespace App.Web.Controllers
         public HomeController()
         {
             this.data = new UoWData();
-            this.roomsService = new RoomsService(this.data);
+            this.roomsService = new ItemsService(this.data);
             this.attractionsService = new ArticlesService(this.data);
             this.pagesService = new PagesService(this.data);
             this.imagesService = new ImagesService(this.data);
@@ -30,20 +30,7 @@ namespace App.Web.Controllers
 
         public ActionResult Index()
         {
-            HomeViewModel model = new HomeViewModel();
-            model.Attractions = this.attractionsService.GetArticles().Take(2);
-            model.RoomFeatures = this.roomsService.GetRoomFeatures().Take(4);
-            model.FeaturedRooms = this.roomsService.GetRooms(null).Take(3);
-            int featuredCustomPageId = int.Parse(ConfigurationManager.AppSettings["FeaturedCustomPageId"]);
-            model.FeaturedCustomPage = this.pagesService.GetFeaturedCustomPage(featuredCustomPageId);
-
-            if (this.data.Images.All().Any())
-            {
-                model.GalleryImages = this.imagesService.GetRandomRoomImages();
-            }
-            
-
-            return View(model);
+            return View();
         }
 
 
