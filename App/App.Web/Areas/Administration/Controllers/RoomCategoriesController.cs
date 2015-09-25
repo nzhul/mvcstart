@@ -24,7 +24,7 @@ namespace App.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<RoomCategoryViewModel> model = this.roomsService.GetRoomCategories();
+            IEnumerable<ItemCategoryViewModel> model = this.roomsService.GetRoomCategories();
             return View(model);
         }
 

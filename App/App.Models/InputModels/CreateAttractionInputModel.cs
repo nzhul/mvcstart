@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace App.Models.InputModels
 {
-    public class CreateAttractionInputModel
+    public class CreateArticleInputModel
     {
         public int Id { get; set; }
 

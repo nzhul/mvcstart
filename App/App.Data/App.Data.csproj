@@ -109,8 +109,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Service\AttractionsService.cs" />
-    <Compile Include="Service\IAttractionsService.cs" />
+    <Compile Include="Service\ArticlesService.cs" />
+    <Compile Include="Service\IArticlesService.cs" />
     <Compile Include="Service\IImagesService.cs" />
     <Compile Include="Service\ImagesService.cs" />
     <Compile Include="Service\IPagesService.cs" />

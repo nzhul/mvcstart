@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace App.Models.ViewModels
 {
-    public class RoomViewModel
+    public class ItemViewModel
     {
-        private ICollection<RoomFeature> roomFeatures;
+        private ICollection<ItemFeature> itemFeatures;
 
-        public RoomViewModel()
+        public ItemViewModel()
         {
-            this.roomFeatures = new HashSet<RoomFeature>();
+            this.itemFeatures = new HashSet<ItemFeature>();
         }
 
         public int Id { get; set; }
-
-        public int RoomNumber { get; set; }
 
         public string Name { get; set; }
 
@@ -27,18 +25,18 @@ namespace App.Models.ViewModels
         
         public int Price { get; set; }
 
-        public int RoomCategoryId { get; set; }
+        public int ItemCategoryId { get; set; }
 
-        public string RoomCategoryName { get; set; }
+        public string ItemCategoryName { get; set; }
 
         public Image PrimaryImage { get; set; }
 
         public IEnumerable<Image> Images { get; set; }
 
-        public virtual ICollection<RoomFeature> RoomFeature
+        public virtual ICollection<ItemFeature> ItemFeature
         {
-            get { return this.roomFeatures; }
-            set { this.roomFeatures = value; }
+            get { return this.itemFeatures; }
+            set { this.itemFeatures = value; }
         }
     }
 }

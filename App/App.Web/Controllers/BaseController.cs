@@ -13,19 +13,19 @@ namespace App.Web.Controllers
     {
         private readonly IUoWData data;
         private readonly IRoomsService roomsService;
-        private readonly IAttractionsService attractionsService;
+        private readonly IArticlesService attractionsService;
         private readonly IPagesService pagesService;
 
         public BaseController()
         {
             this.data = new UoWData();
             this.roomsService = new RoomsService(this.data);
-            this.attractionsService = new AttractionsService(this.data);
+            this.attractionsService = new ArticlesService(this.data);
             this.pagesService = new PagesService(this.data);
 
             LayoutModel model = new LayoutModel();
             model.RoomCategories = this.roomsService.GetRoomCategories();
-            model.Attractions = this.attractionsService.GetAttractions().Take(5);
+            model.Attractions = this.attractionsService.GetArticles().Take(5);
             model.Pages = this.pagesService.GetPages();
 
             ViewBag.LayoutModel = model;

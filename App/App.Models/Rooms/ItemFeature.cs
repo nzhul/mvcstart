@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace App.Models
 {
-    public class RoomFeature
+    public class ItemFeature
     {
-        private ICollection<Item> rooms;
+        private ICollection<Item> items;
 
-        public RoomFeature()
+        public ItemFeature()
         {
-            this.rooms = new HashSet<Item>();
+            this.items = new HashSet<Item>();
         }
 
         public int Id { get; set; }
@@ -21,10 +21,10 @@ namespace App.Models
 
         public string IconName { get; set; }
 
-        public virtual ICollection<Item> Rooms
+        public virtual ICollection<Item> Items
         {
-            get { return this.rooms; }
-            set { this.rooms = value; }
+            get { return this.items; }
+            set { this.items = value; }
         }
     }
 }

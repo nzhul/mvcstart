@@ -23,7 +23,7 @@ namespace App.Data.Migrations
 
         private void AddInitialRoomCategories(ApplicationDbContext context)
         {
-            if (!context.RoomCategories.Any())
+            if (!context.ItemCategories.Any())
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -32,7 +32,7 @@ namespace App.Data.Migrations
                         Name = "Room category " + i,
                         DateAdded = DateTime.Now
                     };
-                    context.RoomCategories.Add(newRoomCategory);
+                    context.ItemCategories.Add(newRoomCategory);
                 }
                 context.SaveChanges();
             }
@@ -40,7 +40,7 @@ namespace App.Data.Migrations
 
         private void AddInitialRooms(ApplicationDbContext context)
         {
-            if (!context.Rooms.Any())
+            if (!context.Items.Any())
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -53,7 +53,7 @@ namespace App.Data.Migrations
                         DateAdded = DateTime.Now,
                         ItemCategoryId = rand.Next(1, 5)
                     };
-                    context.Rooms.Add(newRoom);
+                    context.Items.Add(newRoom);
                 }
                 context.SaveChanges();
             }

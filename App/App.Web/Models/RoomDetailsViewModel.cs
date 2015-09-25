@@ -8,8 +8,8 @@ namespace App.Web.Models
 {
     public class RoomDetailsViewModel
     {
-        public RoomViewModel TheRoom { get; set; }
+        public ItemViewModel TheRoom { get; set; }
 
-        public IEnumerable<RoomViewModel> SimilarRooms { get; set; }
+        public IEnumerable<ItemViewModel> SimilarRooms { get; set; }
     }
 }

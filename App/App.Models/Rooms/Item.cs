@@ -9,13 +9,13 @@ namespace App.Models
     public class Item
     {
         private ICollection<Image> images;
-        private ICollection<RoomFeature> itemFeatures;
+        private ICollection<ItemFeature> itemFeatures;
         //private ICollection<Reservation> reservations;
 
         public Item()
         {
             this.images = new HashSet<Image>();
-            this.itemFeatures = new HashSet<RoomFeature>();
+            this.itemFeatures = new HashSet<ItemFeature>();
             //this.reservations = new HashSet<Reservation>();
         }
 
@@ -53,7 +53,7 @@ namespace App.Models
         //    set { this.reservations = value; }
         //}
 
-        public virtual ICollection<RoomFeature> ItemFeatures
+        public virtual ICollection<ItemFeature> ItemFeatures
         {
             get { return this.itemFeatures; }
             set { this.itemFeatures = value; }

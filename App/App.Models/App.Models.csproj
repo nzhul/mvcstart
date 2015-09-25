@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
-    <Compile Include="Attractions\Attraction.cs" />
+    <Compile Include="Articles\Article.cs" />
     <Compile Include="DataAnnotations\CheckListAttribute.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="InputModels\CreateAttractionInputModel.cs" />
@@ -102,8 +102,8 @@
     <Compile Include="ViewModels\AttractionViewModel.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
-    <Compile Include="ViewModels\RoomFeatureViewModel.cs" />
-    <Compile Include="ViewModels\RoomCategoryViewModel.cs" />
+    <Compile Include="ViewModels\ItemFeatureViewModel.cs" />
+    <Compile Include="ViewModels\ItemCategoryViewModel.cs" />
     <Compile Include="ViewModels\RoomViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

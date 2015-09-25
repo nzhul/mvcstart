@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App.Models.ViewModels
 {
-    public class AttractionViewModel
+    public class ArticleViewModel
     {
         public int Id { get; set; }
 

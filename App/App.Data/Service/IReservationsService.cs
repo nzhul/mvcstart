@@ -12,7 +12,7 @@ namespace App.Data.Service
     public interface IReservationsService
     {
 
-        IEnumerable<RoomViewModel> GetAvailableRooms();
+        IEnumerable<ItemViewModel> GetAvailableRooms();
 
         bool CreateReservation(CreateReservationInputModel inputModel);
 

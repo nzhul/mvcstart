@@ -12,20 +12,20 @@ namespace App.Web.Areas.Administration.Controllers
 {
     public class AttractionsController : Controller
     {
-        private readonly IAttractionsService attractionsService;
+        private readonly IArticlesService attractionsService;
         private readonly IImagesService imagesService;
         private readonly IUoWData uoWData;
 
         public AttractionsController()
         {
             this.uoWData = new UoWData();
-            this.attractionsService = new AttractionsService(this.uoWData);
+            this.attractionsService = new ArticlesService(this.uoWData);
             this.imagesService = new ImagesService(this.uoWData);
         }
 
         public ActionResult Index()
         {
-            IEnumerable<AttractionViewModel> model = this.attractionsService.GetAttractions();
+            IEnumerable<ArticleViewModel> model = this.attractionsService.GetArticles();
             return View(model);
         }
 
@@ -36,11 +36,11 @@ namespace App.Web.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CreateAttractionInputModel inputModel)
+        public ActionResult Create(CreateArticleInputModel inputModel)
         {
             if (ModelState.IsValid)
             {
-                int newPageId = this.attractionsService.CreateAttraction(inputModel);
+                int newPageId = this.attractionsService.CreateArticle(inputModel);
                 if (newPageId > 0)
                 {
                     TempData["message"] = "Атракцията беше добавена успешно!";
@@ -57,22 +57,22 @@ namespace App.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            CreateAttractionInputModel model = new CreateAttractionInputModel();
+            CreateArticleInputModel model = new CreateArticleInputModel();
 
-            if (this.attractionsService.AttractionExists(id))
+            if (this.attractionsService.ArticleExists(id))
             {
-                model = this.attractionsService.GetAttractionInputModelById(id);
+                model = this.attractionsService.GetArticleInputModelById(id);
             }
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, CreateAttractionInputModel inputModel)
+        public ActionResult Edit(int id, CreateArticleInputModel inputModel)
         {
             if (ModelState.IsValid)
             {
-                bool IsUpdateSuccessfull = this.attractionsService.UpdateAttraction(id, inputModel);
+                bool IsUpdateSuccessfull = this.attractionsService.UpdateArticle(id, inputModel);
                 if (IsUpdateSuccessfull)
                 {
                     TempData["message"] = "Атракцията беше редактирана успешно!";
@@ -88,7 +88,7 @@ namespace App.Web.Areas.Administration.Controllers
         public ActionResult Delete(int id)
         {
 
-            bool isSuccessfull = this.attractionsService.DeleteAttraction(id);
+            bool isSuccessfull = this.attractionsService.DeleteArticle(id);
             if (isSuccessfull)
             {
                 TempData["message"] = "Успешно изтрихте атракцията!";

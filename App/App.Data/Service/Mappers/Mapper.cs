@@ -11,18 +11,18 @@ namespace App.Data.Service.Mappers
 {
     public class Mapper
     {
-        public RoomViewModel MapRoomViewModel(Item room)
+        public ItemViewModel MapRoomViewModel(Item room)
         {
-            RoomViewModel model = new RoomViewModel();
+            ItemViewModel model = new ItemViewModel();
             model.Id = room.Id;
             model.Name = room.Name;
             model.Price = room.Price;
             model.Summary = room.Summary;
-            model.RoomFeature = room.ItemFeatures;
+            model.ItemFeature = room.ItemFeatures;
             model.PrimaryImage = room.Images.FirstOrDefault(i => i.IsPrimary);
             model.Images = room.Images;
             model.Description = room.Description;
-            model.RoomCategoryId = room.ItemCategoryId;
+            model.ItemCategoryId = room.ItemCategoryId;
 
             return model;
         }

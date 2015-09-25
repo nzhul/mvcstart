@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App.Models.ViewModels
 {
-    public class RoomCategoryViewModel
+    public class ItemCategoryViewModel
     {
         public int Id { get; set; }
 
@@ -18,6 +18,6 @@ namespace App.Models.ViewModels
 
         public DateTime DateAdded { get; set; }
 
-        public int RoomsCount { get; set; }
+        public int ItemsCount { get; set; }
     }
 }

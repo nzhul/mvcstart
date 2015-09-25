@@ -12,26 +12,26 @@ namespace App.Web.Controllers
     public class AttractionsController : BaseController
     {
         private readonly IUoWData data;
-        private readonly IAttractionsService attractionsService;
+        private readonly IArticlesService attractionsService;
 
         public AttractionsController()
         {
             this.data = new UoWData();
-            this.attractionsService = new AttractionsService(this.data);
+            this.attractionsService = new ArticlesService(this.data);
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<AttractionViewModel> model = new List<AttractionViewModel>();
-            model = this.attractionsService.GetAttractions();
+            IEnumerable<ArticleViewModel> model = new List<ArticleViewModel>();
+            model = this.attractionsService.GetArticles();
             return View(model);
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-            AttractionViewModel model = this.attractionsService.GetAttractionById(id);
+            ArticleViewModel model = this.attractionsService.GetArticleById(id);
             return View(model);
         }
     }

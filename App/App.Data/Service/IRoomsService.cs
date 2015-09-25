@@ -12,7 +12,7 @@ namespace App.Data.Service
 {
     public interface IRoomsService
     {
-        RoomViewModel GetRoomById(int id);
+        ItemViewModel GetRoomById(int id);
 
         CreateRoomInputModel GetRoomInputModelById(int id);
 
@@ -20,7 +20,7 @@ namespace App.Data.Service
         /// Get all rooms from the database
         /// </summary>
         /// <returns>Collection of RoomViewModel</returns>
-        IEnumerable<RoomViewModel> GetRooms(int? categoryId);
+        IEnumerable<ItemViewModel> GetRooms(int? categoryId);
 
         /// <summary>
         /// Creates new Room in the database
@@ -32,7 +32,7 @@ namespace App.Data.Service
 
         IEnumerable<SelectListItem> GetCategories();
 
-        IEnumerable<RoomCategoryViewModel> GetRoomCategories();
+        IEnumerable<ItemCategoryViewModel> GetRoomCategories();
 
         int CreateRoomCategory(CreateRoomCategoryInputModel roomCategory);
 
@@ -42,7 +42,7 @@ namespace App.Data.Service
 
         bool UpdateRoom(int id, CreateRoomInputModel inputModel);
 
-        IEnumerable<RoomFeatureViewModel> GetRoomFeatures();
+        IEnumerable<ItemFeatureViewModel> GetRoomFeatures();
 
         int CreateRoomFeature(CreateRoomFeatureInputModel featureInput);
 
@@ -52,7 +52,7 @@ namespace App.Data.Service
 
         bool DeleteRoomFeature(int id);
 
-        IEnumerable<RoomFeature> GetAvailableRoomFeatures();
+        IEnumerable<ItemFeature> GetAvailableRoomFeatures();
 
         List<int> GetSelectedRoomFeatureIds(int id);
 

@@ -31,19 +31,19 @@ namespace App.Data
             get { return this.GetRepository<ApplicationUser>(); }
         }
 
-        public IRepository<Item> Rooms
+        public IRepository<Item> Items
         {
             get { return this.GetRepository<Item>(); }
         }
 
-        public IRepository<ItemCategory> RoomCategories
+        public IRepository<ItemCategory> ItemCategories
         {
             get { return this.GetRepository<ItemCategory>(); }
         }
 
-        public IRepository<RoomFeature> RoomFeatures
+        public IRepository<ItemFeature> ItemFeatures
         {
-            get { return this.GetRepository<RoomFeature>(); }
+            get { return this.GetRepository<ItemFeature>(); }
         }
 
         public IRepository<Image> Images
@@ -51,9 +51,9 @@ namespace App.Data
             get { return this.GetRepository<Image>(); }
         }
 
-        public IRepository<Attraction> Attractions
+        public IRepository<Article> Articles
         {
-            get { return this.GetRepository<Attraction>(); }
+            get { return this.GetRepository<Article>(); }
         }
 
         public IRepository<Reservation> Reservations

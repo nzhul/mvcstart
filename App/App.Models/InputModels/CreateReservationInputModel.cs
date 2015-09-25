@@ -52,7 +52,7 @@ namespace App.Models.InputModels
         [Display(Name = "Email на наемателя:")]
         public string Email { get; set; }
 
-        public IEnumerable<RoomViewModel> AvailableRooms { get; set; }
+        public IEnumerable<ItemViewModel> AvailableRooms { get; set; }
 
         [CheckList(1, false, ErrorMessage = "Моля изберете поне една стая!")]
         [Display(Name = "Резервирани стаи:")]

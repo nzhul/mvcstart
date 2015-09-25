@@ -11,44 +11,44 @@ using System.Threading.Tasks;
 
 namespace App.Data.Service
 {
-    public class AttractionsService : IAttractionsService
+    public class ArticlesService : IArticlesService
     {
         private readonly IUoWData Data;
 
-        public AttractionsService(IUoWData data)
+        public ArticlesService(IUoWData data)
         {
             this.Data = data;
         }
 
-        public IEnumerable<AttractionViewModel> GetAttractions()
+        public IEnumerable<ArticleViewModel> GetArticles()
         {
-            return this.Data.Attractions.All().Select(this.MapAttractionViewModel);
+            return this.Data.Articles.All().Select(this.MapArticleViewModel);
         }
 
-        private AttractionViewModel MapAttractionViewModel(Attraction dbAttraction)
+        private ArticleViewModel MapArticleViewModel(Article dbArticle)
         {
-            AttractionViewModel model = new AttractionViewModel();
-            model.Id = dbAttraction.Id;
-            model.Title = dbAttraction.Title;
-            model.Image = dbAttraction.Image;
-            model.DateAdded = dbAttraction.DateAdded;
-            model.Summary = dbAttraction.Summary;
-            model.Content = dbAttraction.Content;
+            ArticleViewModel model = new ArticleViewModel();
+            model.Id = dbArticle.Id;
+            model.Title = dbArticle.Title;
+            model.Image = dbArticle.Image;
+            model.DateAdded = dbArticle.DateAdded;
+            model.Summary = dbArticle.Summary;
+            model.Content = dbArticle.Content;
 
             return model;
         }
 
 
-        public int CreateAttraction(CreateAttractionInputModel inputModel)
+        public int CreateArticle(CreateArticleInputModel inputModel)
         {
-            Attraction newAttraction = new Attraction();
+            Article newAttraction = new Article();
             newAttraction.Title = inputModel.Title;
             newAttraction.Summary = inputModel.Summary;
             newAttraction.Content = inputModel.Content;
             newAttraction.DateAdded = DateTime.Now;
             newAttraction.DisplayOrder = inputModel.DisplayOrder;
 
-            this.Data.Attractions.Add(newAttraction);
+            this.Data.Articles.Add(newAttraction);
             this.Data.SaveChanges();
 
             Image defaultImage = new Image
@@ -65,7 +65,7 @@ namespace App.Data.Service
             return newAttraction.Id;
         }
 
-        public bool AttractionExists(int id)
+        public bool ArticleExists(int id)
         {
             if (id <= 0)
             {
@@ -73,20 +73,20 @@ namespace App.Data.Service
             }
             else
             {
-                bool result = this.Data.Attractions.All().Any(r => r.Id == id);
+                bool result = this.Data.Articles.All().Any(r => r.Id == id);
                 return result;
             }
         }
 
-        public CreateAttractionInputModel GetAttractionInputModelById(int id)
+        public CreateArticleInputModel GetArticleInputModelById(int id)
         {
-            Attraction dbAttraction = this.Data.Attractions.Find(id);
+            Article dbAttraction = this.Data.Articles.Find(id);
             return MapPageInputModel(dbAttraction);
         }
 
-        private CreateAttractionInputModel MapPageInputModel(Attraction dbAttraction)
+        private CreateArticleInputModel MapPageInputModel(Article dbAttraction)
         {
-            CreateAttractionInputModel model = new CreateAttractionInputModel();
+            CreateArticleInputModel model = new CreateArticleInputModel();
             model.Id = dbAttraction.Id;
             model.Title = dbAttraction.Title;
             model.Summary = dbAttraction.Summary;
@@ -97,9 +97,9 @@ namespace App.Data.Service
             return model;
         }
 
-        public bool UpdateAttraction(int id, CreateAttractionInputModel inputModel)
+        public bool UpdateArticle(int id, CreateArticleInputModel inputModel)
         {
-            Attraction dbAttraction = this.Data.Attractions.Find(id);
+            Article dbAttraction = this.Data.Articles.Find(id);
             if (dbAttraction != null)
             {
                 dbAttraction.Title = inputModel.Title;
@@ -117,30 +117,30 @@ namespace App.Data.Service
             }
         }
 
-        public bool DeleteAttraction(int id)
+        public bool DeleteArticle(int id)
         {
             // TODO - Also delete the images for that attraction
 
-            var theAttraction = this.Data.Attractions.Find(id);
+            var theAttraction = this.Data.Articles.Find(id);
             if (theAttraction == null)
             {
                 return false;
             }
 
-            this.Data.Attractions.Delete(id);
+            this.Data.Articles.Delete(id);
             this.Data.SaveChanges();
 
             return true;
         }
 
 
-        public AttractionViewModel GetAttractionById(int id)
+        public ArticleViewModel GetArticleById(int id)
         {
-            AttractionViewModel model = new AttractionViewModel();
-            if (this.AttractionExists(id))
+            ArticleViewModel model = new ArticleViewModel();
+            if (this.ArticleExists(id))
             {
-                Attraction dbAttraction = this.Data.Attractions.Find(id);
-                model = this.MapAttractionViewModel(dbAttraction);
+                Article dbAttraction = this.Data.Articles.Find(id);
+                model = this.MapArticleViewModel(dbAttraction);
             }
             else
             {

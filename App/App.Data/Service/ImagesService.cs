@@ -31,7 +31,7 @@ namespace App.Data.Service
 
             int categoryId = uploadData.CategoryId;
             int roomId = uploadData.RoomId;
-            var theRoom = this.Data.Rooms.Find(roomId);
+            var theRoom = this.Data.Items.Find(roomId);
 
             bool firstLoop = true;
             foreach (var file in uploadData.Files)
@@ -79,7 +79,7 @@ namespace App.Data.Service
 
         public bool MakePrimary(int imageId, int roomId)
         {
-            var theRoom = this.Data.Rooms.Find(roomId);
+            var theRoom = this.Data.Items.Find(roomId);
             if (theRoom == null)
             {
                 return false;
@@ -106,7 +106,7 @@ namespace App.Data.Service
             versions.Add("_large", "width=827&crop=auto&format=jpg");
 
             int attractionId = uploadData.AttractionId;
-            var theAttraction = this.Data.Attractions.Find(attractionId);
+            var theAttraction = this.Data.Articles.Find(attractionId);
 
             foreach (var file in uploadData.Files)
             {
@@ -144,7 +144,7 @@ namespace App.Data.Service
 
         public IEnumerable<Image> GetRandomRoomImages()
         {
-            Item randomRoom = this.Data.Rooms.All().OrderBy(r => Guid.NewGuid()).FirstOrDefault();
+            Item randomRoom = this.Data.Items.All().OrderBy(r => Guid.NewGuid()).FirstOrDefault();
 
             if (randomRoom != null)
             {

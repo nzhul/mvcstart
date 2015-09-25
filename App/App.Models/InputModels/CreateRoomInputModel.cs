@@ -13,7 +13,7 @@ namespace App.Models.InputModels
     {
         public CreateRoomInputModel()
         {
-            this.AvailableRoomFeatures = new List<RoomFeature>();
+            this.AvailableRoomFeatures = new List<ItemFeature>();
         }
 
         public int Id { get; set; }
@@ -61,7 +61,7 @@ namespace App.Models.InputModels
         public IEnumerable<Image> Images { get; set; }
 
         [Display(Name = "Екстри: ")]
-        public IEnumerable<RoomFeature> AvailableRoomFeatures { get; set; }
+        public IEnumerable<ItemFeature> AvailableRoomFeatures { get; set; }
 
         //[CheckList(1, false, ErrorMessage = "Моля изберете поне едно удобство!")]
         [Display(Name = "Удобства:")]

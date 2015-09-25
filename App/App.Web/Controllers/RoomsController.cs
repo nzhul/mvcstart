@@ -26,7 +26,7 @@ namespace App.Web.Controllers
         [HttpGet]
         public ActionResult Index(int? categoryId)
         {
-            IEnumerable<RoomViewModel> model = new List<RoomViewModel>();
+            IEnumerable<ItemViewModel> model = new List<ItemViewModel>();
             model = this.roomsService.GetRooms(categoryId);
 
             return View(model);
@@ -39,7 +39,7 @@ namespace App.Web.Controllers
             RoomDetailsViewModel model = new RoomDetailsViewModel();
 
             model.TheRoom = this.roomsService.GetRoomById(id);
-            model.SimilarRooms = this.roomsService.GetRooms(model.TheRoom.RoomCategoryId).Where(r => r.Id != id);
+            model.SimilarRooms = this.roomsService.GetRooms(model.TheRoom.ItemCategoryId).Where(r => r.Id != id);
 
             List<Image> images = model.TheRoom.Images.ToList();
             Image defaultImage = images.Where(i => i.ImagePath.Contains("no-image")).FirstOrDefault();

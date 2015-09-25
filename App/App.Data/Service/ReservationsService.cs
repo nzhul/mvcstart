@@ -26,9 +26,9 @@ namespace App.Data.Service
 
 
 
-        public IEnumerable<RoomViewModel> GetAvailableRooms()
+        public IEnumerable<ItemViewModel> GetAvailableRooms()
         {
-            return this.Data.Rooms.All().Select(this.Mapper.MapRoomViewModel);
+            return this.Data.Items.All().Select(this.Mapper.MapRoomViewModel);
         }
 
 
@@ -50,7 +50,7 @@ namespace App.Data.Service
             {
                 for (int i = 0; i < inputModel.SelectedRoomIds.Count; i++)
                 {
-                    Item theRoom = this.Data.Rooms.Find(inputModel.SelectedRoomIds[i]);
+                    Item theRoom = this.Data.Items.Find(inputModel.SelectedRoomIds[i]);
                     newReservation.OccupiedRooms.Add(theRoom);
                     this.Data.SaveChanges();
                 }
@@ -100,7 +100,7 @@ namespace App.Data.Service
         {
             foreach (var roomId in inputModel.SelectedRoomIds)
             {
-                Item currentSelectedRoom = this.Data.Rooms.Find(roomId);
+                Item currentSelectedRoom = this.Data.Items.Find(roomId);
                 IEnumerable<Reservation> reservationsWithThatRoom = this.Data.Reservations.All().Where(r => r.OccupiedRooms.Select(or => or.Id).Contains(currentSelectedRoom.Id));
 
                 if (reservationsWithThatRoom.Count() > 0)
@@ -200,7 +200,7 @@ namespace App.Data.Service
                 {
                     for (int i = 0; i < inputModel.SelectedRoomIds.Count; i++)
                     {
-                        var theRoom = this.Data.Rooms.Find(inputModel.SelectedRoomIds[i]);
+                        var theRoom = this.Data.Items.Find(inputModel.SelectedRoomIds[i]);
                         dbReservation.OccupiedRooms.Add(theRoom);
                     }
                 }
@@ -218,7 +218,7 @@ namespace App.Data.Service
 
         public bool IsRoomAvailable(QuickReservationInputModel inputModel)
         {
-            Item currentSelectedRoom = this.Data.Rooms.Find(inputModel.RoomId);
+            Item currentSelectedRoom = this.Data.Items.Find(inputModel.RoomId);
             IEnumerable<Reservation> approvedReservationsWithThatRoom = this.Data.Reservations.All().Where(r => r.OccupiedRooms.Select(or => or.Id).Contains(currentSelectedRoom.Id) && r.IsConfirmed == true);
 
             if (approvedReservationsWithThatRoom.Count() > 0)
@@ -253,7 +253,7 @@ namespace App.Data.Service
             newReservation.Email = inputModel.Email;
 
 
-            Item theRoom = this.Data.Rooms.Find(inputModel.RoomId);
+            Item theRoom = this.Data.Items.Find(inputModel.RoomId);
             newReservation.OccupiedRooms.Add(theRoom);
             this.Data.SaveChanges();
 

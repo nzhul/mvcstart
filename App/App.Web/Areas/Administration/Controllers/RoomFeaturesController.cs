@@ -24,7 +24,7 @@ namespace App.Web.Areas.Administration.Controllers
 
         public ActionResult Index()
         {
-            IEnumerable<RoomFeatureViewModel> model = this.roomsService.GetRoomFeatures();
+            IEnumerable<ItemFeatureViewModel> model = this.roomsService.GetRoomFeatures();
             return View(model);
         }
 
