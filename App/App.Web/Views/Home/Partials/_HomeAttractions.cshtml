@@ -1,11 +1,11 @@
-﻿@model IEnumerable<App.Models.ViewModels.AttractionViewModel>
+﻿@model IEnumerable<App.Models.ViewModels.ArticleViewModel>
 
-@foreach (var Attraction in Model)
+@foreach (var Article in Model)
 {
-    var imagePath = Attraction.Image.ImagePath + "_indexThumb.jpg";
-    <div class="home-attractions">
-        <a href="@Url.Action("Details", "Attractions", new { id = Attraction.Id })"><img class="home-attractions-img" src="/@imagePath" alt="@Attraction.Title" /></a>
-        <a href="@Url.Action("Details", "Attractions", new { id = Attraction.Id })" class="home-attractions-title">@Attraction.Title</a>
-        <p class="home-attractions-description">@Attraction.Summary</p>
+    var imagePath = Article.Image.ImagePath + "_indexThumb.jpg";
+    <div class="home-Articles">
+        <a href="@Url.Action("Details", "Articles", new { id = Article.Id })"><img class="home-Articles-img" src="/@imagePath" alt="@Article.Title" /></a>
+        <a href="@Url.Action("Details", "Articles", new { id = Article.Id })" class="home-Articles-title">@Article.Title</a>
+        <p class="home-Articles-description">@Article.Summary</p>
     </div>
 }

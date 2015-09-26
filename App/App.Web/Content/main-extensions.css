@@ -1,9 +1,9 @@
-﻿.home-attractions-img {
+﻿.home-Articles-img {
     border: 1px solid gray;
     float:right;
 }
 
-.home-attractions-title {
+.home-Articles-title {
     display:block;
     border: 1px solid gray;
     float:right;
@@ -18,7 +18,7 @@
     text-align:right;
 }
 
-.home-attractions-description {
+.home-Articles-description {
     float:right;
     margin-top:-25px;
     font-size:12px;
@@ -34,25 +34,25 @@
     position: fixed;
 }
 
-.dab-room-box {
+.dab-item-box {
     margin-bottom: 20px;
 }
 
-.attraction-box {
+.Article-box {
     border-bottom: 1px solid gray;
     padding-bottom: 20px;
     margin-top: 20px;
 }
 
-.attraction-bigthumb {
+.Article-bigthumb {
     float:left;
 }
 
-.attraction-title {
+.Article-title {
     text-transform: uppercase;
 }
 
-.attraction-rightside {
+.Article-rightside {
     width:530px;
     float:right;
 }

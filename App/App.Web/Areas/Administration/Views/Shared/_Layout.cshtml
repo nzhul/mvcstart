@@ -22,7 +22,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("Администрация", "Index", "Rooms", null, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Администрация", "Index", "Items", null, new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -36,10 +36,10 @@
             <div class="col-md-12">
                 <div class="d-navigation">
                     <a href="@Url.Action("Index", "Reservations")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Reservations" ? "active" : "")">Резервации</a>
-                    <a href="@Url.Action("Index", "Rooms")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Rooms" ? "active" : "")">Стаи</a>
-                    <a href="@Url.Action("Index", "RoomCategories")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "RoomCategories" ? "active" : "")">Видове стаи</a>
-                    <a href="@Url.Action("Index", "RoomFeatures")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "RoomFeatures" ? "active" : "")">Удобства</a>
-                    <a href="@Url.Action("Index", "Attractions")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Attractions" ? "active" : "")">Атракции</a>
+                    <a href="@Url.Action("Index", "Items")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Items" ? "active" : "")">Продукти</a>
+                    <a href="@Url.Action("Index", "ItemCategories")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "ItemCategories" ? "active" : "")">Категории</a>
+                    <a href="@Url.Action("Index", "ItemFeatures")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "ItemFeatures" ? "active" : "")">Характеристики</a>
+                    <a href="@Url.Action("Index", "Articles")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Articles" ? "active" : "")">Статии</a>
                     <a href="@Url.Action("Index", "Pages")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Pages" ? "active" : "")">Страници</a>
                     <a href="@Url.Action("Index", "Gallery")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Gallery" ? "active" : "")">Галерия</a>
                 </div>

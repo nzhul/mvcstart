@@ -1,0 +1,102 @@
+﻿@model App.Models.InputModels.CreateArticleInputModel
+
+<div class="row">
+    <div class="col-md-11">
+        <h3>@ViewBag.Title</h3>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    @using (Html.BeginForm((string)ViewBag.FormMode, "Articles", FormMethod.Post, new { @class = "form-horizontal " }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-7">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @class = "dab-input-label" })
+                @Html.ValidationMessageFor(model => model.Title)
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: Съевата дупка" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Summary, new { @class = "dab-input-label" })
+                @Html.ValidationMessageFor(model => model.Summary)
+                @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content, new { @class = "dab-input-label" })
+                @Html.ValidationMessageFor(model => model.Content)
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DisplayOrder, new { @class = "dab-input-label" })
+                @Html.ValidationMessageFor(model => model.DisplayOrder)
+                @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-warning">
+                    @ViewBag.FormModeText
+                </button>
+            </div>
+        </div>
+    }
+    @if (ViewBag.FormMode == "Edit")
+    {
+        <div class="col-sm-5">
+            <!-- Guest Checkout Panel Starts -->
+            <div class="panel panel-smart">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Добави Снимки
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    @if (Model.Image != null)
+                    {
+                        var imageSrc = "../../../" + @Model.Image.ImagePath + "_detailsSmallThumb.jpg";
+                        var isPrimary = @Model.Image.IsPrimary ? "is-primary" : " ";
+                        var imageThumbnailBoxId = "thumb-box-" + @Model.Image.Id;
+
+                        <div id="@imageThumbnailBoxId">
+                            <img src="@imageSrc" class="product-image-thumbnail-admin" />
+                            <div class="thumbnail-hover @isPrimary">
+                                <strong>Главна</strong>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                    }
+                    else
+                    {
+                        <div class="alert alert-dismissable alert-info">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <p>
+                                Продукта все още няма добавени никакви снимки!<br />
+                                Използвай <strong>формата</strong> отдолу за да добавиш
+                            </p>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("UploadPhotos", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.ValidationSummary()
+
+                        <div class="form-field">
+                            <p>Избери снимки:</p>
+                            <div class="upload-container">
+                                <div class="upload">
+                                    <input type="file" name="files" id="file1" />
+                                    <img src="@Url.Content("~/Content/images/delete.png")" class="upload-img-remove-icon" alt="Remove picture." />
+                                    <input type="hidden" name="ArticleId" value="@Model.Id" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <input type="submit" value="Качи снимките" />
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- Guest Checkout Panel Ends -->
+        </div>
+    }
+</div>

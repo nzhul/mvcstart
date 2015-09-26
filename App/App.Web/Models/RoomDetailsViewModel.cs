@@ -6,10 +6,10 @@ using System.Web;
 
 namespace App.Web.Models
 {
-    public class RoomDetailsViewModel
+    public class ItemDetailsViewModel
     {
-        public ItemViewModel TheRoom { get; set; }
+        public ItemViewModel TheItem { get; set; }
 
-        public IEnumerable<ItemViewModel> SimilarRooms { get; set; }
+        public IEnumerable<ItemViewModel> SimilarItems { get; set; }
     }
 }

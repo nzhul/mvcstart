@@ -24,10 +24,10 @@ namespace App.Models.InputModels
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DepartureDate { get; set; }
 
-        [Required(ErrorMessage = "Посочете брой стаи!")]
+        [Required(ErrorMessage = "Посочете брой продукти!")]
         [Range(1, int.MaxValue, ErrorMessage = "Моля въведете валидно число!")]
-        [Display(Name = "Брой на наетите стаи:")]
-        public int RoomsCount { get; set; }
+        [Display(Name = "Брой на наетите продукти:")]
+        public int ItemsCount { get; set; }
 
         [Required(ErrorMessage = "Задължително въведете брой възрастни!")]
         [Range(1, int.MaxValue, ErrorMessage = "Моля въведете валидно число!")]
@@ -52,11 +52,11 @@ namespace App.Models.InputModels
         [Display(Name = "Email на наемателя:")]
         public string Email { get; set; }
 
-        public IEnumerable<ItemViewModel> AvailableRooms { get; set; }
+        public IEnumerable<ItemViewModel> AvailableItems { get; set; }
 
-        [CheckList(1, false, ErrorMessage = "Моля изберете поне една стая!")]
-        [Display(Name = "Резервирани стаи:")]
-        public List<int> SelectedRoomIds { get; set; }
+        [CheckList(1, false, ErrorMessage = "Моля изберете поне една продукт!")]
+        [Display(Name = "Резервирани продукти:")]
+        public List<int> SelectedItemIds { get; set; }
 
     }
 }

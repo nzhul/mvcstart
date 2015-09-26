@@ -1,0 +1,10 @@
+﻿@model App.Models.InputModels.CreateItemCategoryInputModel
+@{
+    ViewBag.Title = "Редактиране на Категория";
+    ViewBag.FormModeText = "Зарази";
+    ViewBag.FormMode = "Edit";
+}
+
+<div class="container">
+    @{Html.RenderPartial("Partials/_CreateEditItemCategoryPartial", Model);}
+</div>

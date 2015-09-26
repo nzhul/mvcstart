@@ -1,0 +1,25 @@
+﻿@model App.Models.ViewModels.ArticleViewModel
+@{
+    var Article = Model;
+    var imgPath = Article.Image.ImagePath + "_BigThumb.jpg";
+}
+
+<div class="breadcrumb breadcrumb-1 pos-center">
+    <h1>АТРАКЦИИ</h1>
+</div>
+<div class="content">
+    <!-- Content Section -->
+    <div class="container margint60">
+        <div class="row">
+            <div class="col-lg-9">
+                <a href="@Url.Action("Details", "Articles", new { id = Article.Id })" class="Article-bigthumb" style="margin-right:20px;"><img src="/@imgPath" alt="Alternate Text" /></a>
+                <a href="@Url.Action("Details", "Articles", new { id = Article.Id })"><h3 class="Article-title">@Article.Title</h3></a>
+                <p class="Article-summary">@Html.Raw(Article.Content)</p>
+            </div>
+            <div class="col-lg-3">
+                @Html.Partial("~/Views/Shared/_Sidebar.cshtml");
+                @section scripts { @Html.Partial("~/Views/Shared/_QuickReservationScripts.cshtml") }
+            </div>
+        </div>
+    </div>
+</div>

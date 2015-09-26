@@ -17,47 +17,47 @@ namespace App.Data.Service
         CreateItemInputModel GetItemInputModelById(int id);
 
         /// <summary>
-        /// Get all rooms from the database
+        /// Get all items from the database
         /// </summary>
-        /// <returns>Collection of RoomViewModel</returns>
-        IEnumerable<ItemViewModel> GetRooms(int? categoryId);
+        /// <returns>Collection of ItemViewModel</returns>
+        IEnumerable<ItemViewModel> GetItems(int? categoryId);
 
         /// <summary>
-        /// Creates new Room in the database
+        /// Creates new Item in the database
         /// </summary>
-        /// <returns>Returns the Id of the new Room</returns>
-        bool CreateRoom(CreateItemInputModel room);
+        /// <returns>Returns the Id of the new Item</returns>
+        bool CreateItem(CreateItemInputModel item);
 
-        bool RoomExists(int id);
+        bool ItemExists(int id);
 
         IEnumerable<SelectListItem> GetCategories();
 
-        IEnumerable<ItemCategoryViewModel> GetRoomCategories();
+        IEnumerable<ItemCategoryViewModel> GetItemCategories();
 
-        int CreateRoomCategory(CreateItemCategoryInputModel roomCategory);
+        int CreateItemCategory(CreateItemCategoryInputModel itemCategory);
 
-        CreateItemCategoryInputModel GetRoomCategoryInputModelById(int id);
+        CreateItemCategoryInputModel GetItemCategoryInputModelById(int id);
 
-        bool UpdateRoomCategory(int id, CreateItemCategoryInputModel inputModel);
+        bool UpdateItemCategory(int id, CreateItemCategoryInputModel inputModel);
 
-        bool UpdateRoom(int id, CreateItemInputModel inputModel);
+        bool UpdateItem(int id, CreateItemInputModel inputModel);
 
-        IEnumerable<ItemFeatureViewModel> GetRoomFeatures();
+        IEnumerable<ItemFeatureViewModel> GetItemFeatures();
 
-        int CreateRoomFeature(CreateItemFeatureInputModel featureInput);
+        int CreateItemFeature(CreateItemFeatureInputModel featureInput);
 
-        CreateItemFeatureInputModel GetRoomFeatureInputModelById(int id);
+        CreateItemFeatureInputModel GetItemFeatureInputModelById(int id);
 
-        bool UpdateRoomFeature(int id, CreateItemFeatureInputModel roomFeature);
+        bool UpdateItemFeature(int id, CreateItemFeatureInputModel itemFeature);
 
-        bool DeleteRoomFeature(int id);
+        bool DeleteItemFeature(int id);
 
-        IEnumerable<ItemFeature> GetAvailableRoomFeatures();
+        IEnumerable<ItemFeature> GetAvailableItemFeatures();
 
-        List<int> GetSelectedRoomFeatureIds(int id);
+        List<int> GetSelectedItemFeatureIds(int id);
 
         bool DeleteImage(int imageId);
 
-        bool DeleteRoom(int id);
+        bool DeleteItem(int id);
     }
 }

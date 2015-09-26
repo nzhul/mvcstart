@@ -1,0 +1,13 @@
+﻿@model IEnumerable<App.Models.ViewModels.ItemFeatureViewModel>
+
+@foreach (var Feature in Model)
+{
+    <tr>
+        <td>@Feature.Name</td>
+        <td>
+            <a href="#"><img src="~/Areas/Administration/Content/img/preview-icon.png" /></a>
+            <a href="@Url.Action("Edit", new { @id = Feature.Id })"><img src="~/Areas/Administration/Content/img/edit-icon.png" /></a>
+            <a onclick="return confirm('Сигурни ли сте, че искате да изтриете?');" href="@Url.Action("Delete", new { @id = Feature.Id })"><img src="~/Areas/Administration/Content/img/delete-icon.png" /></a>
+        </td>
+    </tr>
+}

@@ -1,52 +1,49 @@
 ﻿using App.Models;
 using App.Models.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace App.Web.Models
 {
-    public class HomeViewModel
-    {
-        private IEnumerable<ItemFeatureViewModel> roomFeatures;
-        private IEnumerable<ArticleViewModel> attractions;
-        private IEnumerable<ItemViewModel> featuredRooms;
-        private IEnumerable<Image> galleryImages;
+	public class HomeViewModel
+	{
+		private IEnumerable<ItemFeatureViewModel> itemFeatures;
+		private IEnumerable<ArticleViewModel> articles;
+		private IEnumerable<ItemViewModel> featuredItems;
+		private IEnumerable<Image> galleryImages;
 
-        public HomeViewModel()
-        {
-            this.roomFeatures = new List<ItemFeatureViewModel>();
-            this.attractions = new List<ArticleViewModel>();
-            this.featuredRooms = new List<ItemViewModel>();
-            this.galleryImages = new List<Image>();
-        }
+		public HomeViewModel()
+		{
+			this.itemFeatures = new List<ItemFeatureViewModel>();
+			this.Articles = new List<ArticleViewModel>();
+			this.featuredItems = new List<ItemViewModel>();
+			this.galleryImages = new List<Image>();
+		}
 
-        public IEnumerable<ArticleViewModel> Attractions
-        {
-            get { return this.attractions; }
-            set { this.attractions = value; }
-        }
+		public IEnumerable<ArticleViewModel> Articles
+		{
+			get { return this.articles; }
+			set { this.articles = value; }
+		}
 
-        public IEnumerable<ItemFeatureViewModel> RoomFeatures
-        {
-            get { return this.roomFeatures; }
-            set { this.roomFeatures = value; }
-        }
+		public IEnumerable<ItemFeatureViewModel> ItemFeatures
+		{
+			get { return this.itemFeatures; }
+			set { this.itemFeatures = value; }
+		}
 
-        public IEnumerable<ItemViewModel> FeaturedRooms
-        {
-            get { return this.featuredRooms; }
-            set { this.featuredRooms = value; }
-        }
+		public IEnumerable<ItemViewModel> FeaturedItems
+		{
+			get { return this.featuredItems; }
+			set { this.featuredItems = value; }
+		}
 
-        public IEnumerable<Image> GalleryImages
-        {
-            get { return this.galleryImages; }
-            set { this.galleryImages = value; }
-        }
+		public IEnumerable<Image> GalleryImages
+		{
+			get { return this.galleryImages; }
+			set { this.galleryImages = value; }
+		}
 
 
-        public PageViewModel FeaturedCustomPage { get; set; }
-    }
+		public PageViewModel FeaturedCustomPage { get; set; }
+	}
 }

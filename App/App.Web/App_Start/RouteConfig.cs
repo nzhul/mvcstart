@@ -15,22 +15,22 @@ namespace App.Web
 
             routes.MapRoute(
                 name: "Categories",
-                url: "Rooms/Category/{categoryId}",
-                defaults: new { controller = "Rooms", action = "Index" },
+                url: "Items/Category/{categoryId}",
+                defaults: new { controller = "Items", action = "Index" },
                 namespaces: new string[] { "App.Web.Controllers" }
             );
 
             routes.MapRoute(
-                name: "RoomDetails",
-                url: "Rooms/{id}",
-                defaults: new { controller = "Rooms", action = "Details" },
+                name: "ItemDetails",
+                url: "Items/{id}",
+                defaults: new { controller = "Items", action = "Details" },
                 namespaces: new string[] { "App.Web.Controllers" }
             );
 
             routes.MapRoute(
-                name: "Attractions",
-                url: "Attractions/{id}",
-                defaults: new { controller = "Attractions", action = "Index", id = UrlParameter.Optional },
+                name: "Articles",
+                url: "Articles/{id}",
+                defaults: new { controller = "Articles", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "App.Web.Controllers" }
             );
 

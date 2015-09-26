@@ -12,7 +12,7 @@ namespace App.Models.InputModels
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Името на атракцията е задължително:")]
+        [Required(ErrorMessage = "Името на статията е задължително:")]
         [StringLength(250, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 250 символа, минимална 3")]
         [Display(Name = "Име:")]
         public string Title { get; set; }

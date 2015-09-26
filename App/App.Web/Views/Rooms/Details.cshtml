@@ -1,25 +1,25 @@
-﻿@model App.Web.Models.RoomDetailsViewModel
+﻿@model App.Web.Models.ItemDetailsViewModel
 
 <div class="breadcrumb breadcrumb-1 pos-center">
-    <h1 class="title-uppercase">@Model.TheRoom.Name</h1>
+    <h1 class="title-uppercase">@Model.TheItem.Name</h1>
 </div>
 <div class="content">
     <!-- Content Section -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <!-- Room Gallery Slider -->
-                <div class="room-gallery">
+                <!-- Item Gallery Slider -->
+                <div class="item-gallery">
                     <div class="margint40 marginb20"><h4>СНИМКИ НА СТАЯТА</h4></div>
                     <div class="flexslider-thumb falsenav">
                         <ul class="slides">
-                            @if (Model.TheRoom.Images != null)
+                            @if (Model.TheItem.Images != null)
                             {
-                                foreach (var Image in Model.TheRoom.Images)
+                                foreach (var Image in Model.TheItem.Images)
                                 {
                                     string thumbUrl = Image.ImagePath + "_detailsSmallThumb.jpg";
                                     string bigImgUrl = Image.ImagePath + "_large.jpg";
-                                    <li data-thumb="/@thumbUrl"><img alt="@Model.TheRoom.Name" class="img-responsive" src="/@bigImgUrl" /></li>
+                                    <li data-thumb="/@thumbUrl"><img alt="@Model.TheItem.Name" class="img-responsive" src="/@bigImgUrl" /></li>
                                 }
                             }
                         </ul>
@@ -27,21 +27,21 @@
                 </div>
             </div>
             <div class="col-lg-9 clearfix">
-                <!-- Room Information -->
+                <!-- Item Information -->
                 <div class="col-lg-8 clearfix col-sm-8">
                     <h4>ОПИСАНИЕ НА СТАЯТА</h4>
-                    <p>@Html.Raw(Model.TheRoom.Description) </p>
+                    <p>@Html.Raw(Model.TheItem.Description) </p>
                 </div>
                 <div class="col-lg-4 clearfix col-sm-4">
-                    <div class="room-services">
-                        <!-- Room Services -->
+                    <div class="item-services">
+                        <!-- Item Services -->
                         <h4>УДОБСТВА</h4>
-                        <ul class="room-services">
-                            @if (Model.TheRoom.RoomFeature != null)
+                        <ul class="item-services">
+                            @if (Model.TheItem.ItemFeature != null)
                             {
-                                foreach (var RoomFeature in Model.TheRoom.RoomFeature)
+                                foreach (var ItemFeature in Model.TheItem.ItemFeature)
                                 {
-                                    <li><i class="@RoomFeature.IconName"></i> @RoomFeature.Name </li>
+                                    <li><i class="@ItemFeature.IconName"></i> @ItemFeature.Name </li>
                                 }
                             }
                         </ul>
@@ -49,9 +49,9 @@
                 </div>
                 <div class="col-lg-12 clearfix">
                     <h4>ДРУГИ ПОДОБНИ СТАЙ</h4>
-                    @if (Model.SimilarRooms != null)
+                    @if (Model.SimilarItems != null)
                     {
-                        @Html.Partial("~/Views/Home/Partials/_HomeFeaturedRooms.cshtml", Model.SimilarRooms)
+                        @Html.Partial("~/Views/Home/Partials/_HomeFeaturedItems.cshtml", Model.SimilarItems)
                     }
                 </div>
             </div>

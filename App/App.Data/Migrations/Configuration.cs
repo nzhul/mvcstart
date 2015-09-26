@@ -17,43 +17,43 @@ namespace App.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //this.AddInitialRoomCategories(context);
-            //this.AddInitialRooms(context);
+            //this.AddInitialItemCategories(context);
+            //this.AddInitialItems(context);
         }
 
-        private void AddInitialRoomCategories(ApplicationDbContext context)
+        private void AddInitialItemCategories(ApplicationDbContext context)
         {
             if (!context.ItemCategories.Any())
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    var newRoomCategory = new ItemCategory
+                    var newItemCategory = new ItemCategory
                     {
-                        Name = "Room category " + i,
+                        Name = "Item category " + i,
                         DateAdded = DateTime.Now
                     };
-                    context.ItemCategories.Add(newRoomCategory);
+                    context.ItemCategories.Add(newItemCategory);
                 }
                 context.SaveChanges();
             }
         }
 
-        private void AddInitialRooms(ApplicationDbContext context)
+        private void AddInitialItems(ApplicationDbContext context)
         {
             if (!context.Items.Any())
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    var newRoom = new Item
+                    var newItem = new Item
                     {
-                        Name = "Room " + i,
+                        Name = "Item " + i,
                         Price = rand.Next(30,80),
-                        Summary = "Short Description of the room " + i,
-                        Description = "Long Description of the room " + i,
+                        Summary = "Short Description of the item " + i,
+                        Description = "Long Description of the item " + i,
                         DateAdded = DateTime.Now,
                         ItemCategoryId = rand.Next(1, 5)
                     };
-                    context.Items.Add(newRoom);
+                    context.Items.Add(newItem);
                 }
                 context.SaveChanges();
             }

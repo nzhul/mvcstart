@@ -11,42 +11,42 @@ using System.Web.Mvc;
 
 namespace App.Web.Controllers
 {
-    public class RoomsController : BaseController
-    {
-        private readonly IItemsService roomsService;
-        private readonly IUoWData data;
+	public class ItemsController : BaseController
+	{
+		private readonly IItemsService itemsService;
+		private readonly IUoWData data;
 
 
-        public RoomsController()
-        {
-            this.data = new UoWData();
-            this.roomsService = new ItemsService(this.data);
-        }
+		public ItemsController()
+		{
+			this.data = new UoWData();
+			this.itemsService = new ItemsService(this.data);
+		}
 
-        [HttpGet]
-        public ActionResult Index(int? categoryId)
-        {
-            IEnumerable<ItemViewModel> model = new List<ItemViewModel>();
-            model = this.roomsService.GetRooms(categoryId);
+		[HttpGet]
+		public ActionResult Index(int? categoryId)
+		{
+			IEnumerable<ItemViewModel> model = new List<ItemViewModel>();
+			model = this.itemsService.GetItems(categoryId);
 
-            return View(model);
-        }
+			return View(model);
+		}
 
 
-        [HttpGet]
-        public ActionResult Details(int id)
-        {
-            RoomDetailsViewModel model = new RoomDetailsViewModel();
+		[HttpGet]
+		public ActionResult Details(int id)
+		{
+			ItemDetailsViewModel model = new ItemDetailsViewModel();
 
-            model.TheRoom = this.roomsService.GetItemById(id);
-            model.SimilarRooms = this.roomsService.GetRooms(model.TheRoom.ItemCategoryId).Where(r => r.Id != id);
+			model.TheItem = this.itemsService.GetItemById(id);
+			model.SimilarItems = this.itemsService.GetItems(model.TheItem.ItemCategoryId).Where(r => r.Id != id);
 
-            List<Image> images = model.TheRoom.Images.ToList();
-            Image defaultImage = images.Where(i => i.ImagePath.Contains("no-image")).FirstOrDefault();
-            images.Remove(defaultImage);
-            model.TheRoom.Images = images;
+			List<Image> images = model.TheItem.Images.ToList();
+			Image defaultImage = images.Where(i => i.ImagePath.Contains("no-image")).FirstOrDefault();
+			images.Remove(defaultImage);
+			model.TheItem.Images = images;
 
-            return View(model);
-        }
-    }
+			return View(model);
+		}
+	}
 }

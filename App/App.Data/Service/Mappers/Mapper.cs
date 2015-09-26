@@ -11,18 +11,18 @@ namespace App.Data.Service.Mappers
 {
     public class Mapper
     {
-        public ItemViewModel MapItemViewModel(Item room)
+        public ItemViewModel MapItemViewModel(Item item)
         {
             ItemViewModel model = new ItemViewModel();
-            model.Id = room.Id;
-            model.Name = room.Name;
-            model.Price = room.Price;
-            model.Summary = room.Summary;
-            model.ItemFeature = room.ItemFeatures;
-            model.PrimaryImage = room.Images.FirstOrDefault(i => i.IsPrimary);
-            model.Images = room.Images;
-            model.Description = room.Description;
-            model.ItemCategoryId = room.ItemCategoryId;
+            model.Id = item.Id;
+            model.Name = item.Name;
+            model.Price = item.Price;
+            model.Summary = item.Summary;
+            model.ItemFeature = item.ItemFeatures;
+            model.PrimaryImage = item.Images.FirstOrDefault(i => i.IsPrimary);
+            model.Images = item.Images;
+            model.Description = item.Description;
+            model.ItemCategoryId = item.ItemCategoryId;
 
             return model;
         }
@@ -34,7 +34,7 @@ namespace App.Data.Service.Mappers
             model.ArrivalDate = reservation.ArrivalDate;
             model.DepartureDate = reservation.DepartureDate;
             model.IsConfirmed = reservation.IsConfirmed;
-            model.OccupiedRooms = reservation.OccupiedRooms;
+            model.OccupiedItems = reservation.OccupiedItems;
             model.FirstName = reservation.FirstName;
             model.LastName = reservation.LastName;
             model.Phone = reservation.Phone;
@@ -54,7 +54,7 @@ namespace App.Data.Service.Mappers
             model.LastName = dbReservation.LastName;
             model.Phone = dbReservation.Phone;
             model.Email = dbReservation.Email;
-            model.RoomsCount = dbReservation.RoomsCount;
+            model.ItemsCount = dbReservation.ItemsCount;
             model.Adults = dbReservation.Adults;
             model.Childs = dbReservation.Childs;
 

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<App.Models.ViewModels.ItemViewModel>
+
+@foreach (var Item in Model)
+{
+    <tr>
+        <td><img src="~/Areas/Administration/Content/img/picture-icon.png" /></td>
+        <td>@Item.Name</td>
+        @*<td><a href="#" class="btn btn-primary btn-xs">Настани</a></td>*@
+        <td>
+            <a href="@Url.Action("Details", "Items", new { area = "", id = Item.Id })"><img src="~/Areas/Administration/Content/img/preview-icon.png" /></a>
+            <a href="@Url.Action("Edit", new { @id = Item.Id })"><img src="~/Areas/Administration/Content/img/edit-icon.png" /></a>
+            <a onclick="return confirm('Сигурни ли сте, че искате да изтриете?');" href="@Url.Action("Delete", new { @id = Item.Id })"><img src="~/Areas/Administration/Content/img/delete-icon.png" /></a>
+        </td>
+    </tr>
+}

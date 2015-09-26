@@ -26,7 +26,7 @@ namespace App.Data.Service
 
 
 
-        public IEnumerable<ItemViewModel> GetAvailableRooms()
+        public IEnumerable<ItemViewModel> GetAvailableItems()
         {
             return this.Data.Items.All().Select(this.Mapper.MapItemViewModel);
         }
@@ -37,7 +37,7 @@ namespace App.Data.Service
             Reservation newReservation = new Reservation();
             newReservation.ArrivalDate = inputModel.ArrivalDate;
             newReservation.DepartureDate = inputModel.DepartureDate;
-            newReservation.RoomsCount = inputModel.RoomsCount;
+            newReservation.ItemsCount = inputModel.ItemsCount;
             newReservation.Adults = inputModel.Adults;
             newReservation.Childs = inputModel.Childs;
             newReservation.IsConfirmed = inputModel.IsConfirmed;
@@ -46,12 +46,12 @@ namespace App.Data.Service
             newReservation.Phone = inputModel.Phone;
             newReservation.Email = inputModel.Email;
 
-            if (inputModel.SelectedRoomIds != null && inputModel.SelectedRoomIds.Count > 0)
+            if (inputModel.SelectedItemIds != null && inputModel.SelectedItemIds.Count > 0)
             {
-                for (int i = 0; i < inputModel.SelectedRoomIds.Count; i++)
+                for (int i = 0; i < inputModel.SelectedItemIds.Count; i++)
                 {
-                    Item theRoom = this.Data.Items.Find(inputModel.SelectedRoomIds[i]);
-                    newReservation.OccupiedRooms.Add(theRoom);
+                    Item theItem = this.Data.Items.Find(inputModel.SelectedItemIds[i]);
+                    newReservation.OccupiedItems.Add(theItem);
                     this.Data.SaveChanges();
                 }
             }
@@ -96,16 +96,16 @@ namespace App.Data.Service
         }
 
 
-        public bool IsRoomAvailable(CreateReservationInputModel inputModel)
+        public bool IsItemAvailable(CreateReservationInputModel inputModel)
         {
-            foreach (var roomId in inputModel.SelectedRoomIds)
+            foreach (var itemId in inputModel.SelectedItemIds)
             {
-                Item currentSelectedRoom = this.Data.Items.Find(roomId);
-                IEnumerable<Reservation> reservationsWithThatRoom = this.Data.Reservations.All().Where(r => r.OccupiedRooms.Select(or => or.Id).Contains(currentSelectedRoom.Id));
+                Item currentSelectedItem = this.Data.Items.Find(itemId);
+                IEnumerable<Reservation> reservationsWithThatItem = this.Data.Reservations.All().Where(r => r.OccupiedItems.Select(or => or.Id).Contains(currentSelectedItem.Id));
 
-                if (reservationsWithThatRoom.Count() > 0)
+                if (reservationsWithThatItem.Count() > 0)
                 {
-                    foreach (var reservation in reservationsWithThatRoom)
+                    foreach (var reservation in reservationsWithThatItem)
                     {
                         TimeRange inputTimeRange = new TimeRange(inputModel.ArrivalDate, inputModel.DepartureDate);
                         TimeRange dbTimeRange = new TimeRange(reservation.ArrivalDate, reservation.DepartureDate);
@@ -159,18 +159,18 @@ namespace App.Data.Service
         }
 
 
-        public List<int> GetSelectedRoomIds(int id)
+        public List<int> GetSelectedItemIds(int id)
         {
             Reservation dbReservation = this.Data.Reservations.Find(id);
 
-            List<int> selectedRoomIds = new List<int>();
+            List<int> selectedItemIds = new List<int>();
 
-            foreach (var room in dbReservation.OccupiedRooms)
+            foreach (var item in dbReservation.OccupiedItems)
             {
-                selectedRoomIds.Add(room.Id);
+                selectedItemIds.Add(item.Id);
             }
 
-            return selectedRoomIds;
+            return selectedItemIds;
         }
 
 
@@ -188,20 +188,20 @@ namespace App.Data.Service
                 dbReservation.Email = inputModel.Email;
                 dbReservation.DepartureDate = inputModel.DepartureDate;
                 dbReservation.IsConfirmed = inputModel.IsConfirmed;
-                dbReservation.RoomsCount = inputModel.RoomsCount;
+                dbReservation.ItemsCount = inputModel.ItemsCount;
 
-                foreach (var room in dbReservation.OccupiedRooms.ToList())
+                foreach (var item in dbReservation.OccupiedItems.ToList())
                 {
-                    dbReservation.OccupiedRooms.Remove(room);
+                    dbReservation.OccupiedItems.Remove(item);
                 }
                 this.Data.SaveChanges();
 
-                if (inputModel.SelectedRoomIds != null && inputModel.SelectedRoomIds.Count > 0)
+                if (inputModel.SelectedItemIds != null && inputModel.SelectedItemIds.Count > 0)
                 {
-                    for (int i = 0; i < inputModel.SelectedRoomIds.Count; i++)
+                    for (int i = 0; i < inputModel.SelectedItemIds.Count; i++)
                     {
-                        var theRoom = this.Data.Items.Find(inputModel.SelectedRoomIds[i]);
-                        dbReservation.OccupiedRooms.Add(theRoom);
+                        var theItem = this.Data.Items.Find(inputModel.SelectedItemIds[i]);
+                        dbReservation.OccupiedItems.Add(theItem);
                     }
                 }
 
@@ -216,14 +216,14 @@ namespace App.Data.Service
         }
 
 
-        public bool IsRoomAvailable(QuickReservationInputModel inputModel)
+        public bool IsItemAvailable(QuickReservationInputModel inputModel)
         {
-            Item currentSelectedRoom = this.Data.Items.Find(inputModel.RoomId);
-            IEnumerable<Reservation> approvedReservationsWithThatRoom = this.Data.Reservations.All().Where(r => r.OccupiedRooms.Select(or => or.Id).Contains(currentSelectedRoom.Id) && r.IsConfirmed == true);
+            Item currentSelectedItem = this.Data.Items.Find(inputModel.ItemId);
+            IEnumerable<Reservation> approvedReservationsWithThatItem = this.Data.Reservations.All().Where(r => r.OccupiedItems.Select(or => or.Id).Contains(currentSelectedItem.Id) && r.IsConfirmed == true);
 
-            if (approvedReservationsWithThatRoom.Count() > 0)
+            if (approvedReservationsWithThatItem.Count() > 0)
             {
-                foreach (var reservation in approvedReservationsWithThatRoom)
+                foreach (var reservation in approvedReservationsWithThatItem)
                 {
                     TimeRange inputTimeRange = new TimeRange(inputModel.ArrivalDate, inputModel.DepartureDate);
                     TimeRange dbTimeRange = new TimeRange(reservation.ArrivalDate, reservation.DepartureDate);
@@ -253,8 +253,8 @@ namespace App.Data.Service
             newReservation.Email = inputModel.Email;
 
 
-            Item theRoom = this.Data.Items.Find(inputModel.RoomId);
-            newReservation.OccupiedRooms.Add(theRoom);
+            Item theItem = this.Data.Items.Find(inputModel.ItemId);
+            newReservation.OccupiedItems.Add(theItem);
             this.Data.SaveChanges();
 
             this.Data.Reservations.Add(newReservation);
@@ -265,14 +265,14 @@ namespace App.Data.Service
 
             MailMessage mailMessage = new MailMessage(sender, receiver);
             mailMessage.IsBodyHtml = true;
-            mailMessage.Subject = "Запитване за резервация: " + theRoom.Name;
+            mailMessage.Subject = "Запитване за резервация: " + theItem.Name;
             mailMessage.Body = "Име: " + (newReservation.FirstName != null ? newReservation.FirstName : "--липсва--") + "<br/>" +
                                "Фамилия: " + (newReservation.LastName != null ? newReservation.LastName : "--липсва--") + "<br/>" +
                                "Email: " + (newReservation.Email != null ? newReservation.Email : "--липсва--") + "<br/>" +
                                "Телефон: " + (newReservation.Phone != null ? newReservation.Phone : "--липсва--") + "<br/><br/>" +
                                "Настаняване: " + (newReservation.Phone != null ? newReservation.ArrivalDate.ToShortDateString() : "--липсва--") + "<br/><br/>" +
                                "Освобождаване: " + (newReservation.Phone != null ? newReservation.DepartureDate.ToShortDateString() : "--липсва--") + "<br/><br/>" +
-                               "Стая: " + theRoom.Name;
+                               "Продукт: " + theItem.Name;
 
             SmtpClient smtpClient = new SmtpClient();
 

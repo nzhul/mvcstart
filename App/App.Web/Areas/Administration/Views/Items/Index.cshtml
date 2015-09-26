@@ -1,0 +1,61 @@
+﻿@model App.Web.Areas.Administration.Models.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-4">
+        <h3>Свободни продукти:</h3>
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th><img src="~/Areas/Administration/Content/img/picture-icon.png" /></th>
+                    <th>Номер</th>
+                    @*<th>Настаняване</th>*@
+                    <th style="text-align:center;"><img src="~/Areas/Administration/Content/img/cog-icon.png" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                @Html.Partial("Partials/_AvailableItems", Model.Items)
+            </tbody>
+        </table> 
+    </div>
+    @*<div class="col-md-8">
+        <h3>Заети продукти:</h3>
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th><img src="~/Areas/Administration/Content/img/picture-icon.png" /></th>
+                    <th>Номер</th>
+                    <th>Резервация</th>
+                    <th>Пристигане</th>
+                    <th>Заминаване</th>
+                    <th>Настаняване</th>
+                    <th style="text-align:center;"><img src="~/Areas/Administration/Content/img/cog-icon.png" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="~/Areas/Administration/Content/img/picture-icon.png" /></td>
+                    <td>202</td>
+                    <td>№ 11224</td>
+                    <td>@DateTime.Now.ToString("dd-MM-yyyy hh:mm")</td>
+                    <td>@DateTime.Now.AddDays(2).ToString("dd-MM-yyyy hh:mm")</td>
+                    <td><a href="#" class="btn btn-danger btn-xs">Освободи</a></td>
+                    <td>
+                        <a href="#"><img src="~/Areas/Administration/Content/img/preview-icon.png" /></a>
+                        <a href="@Url.Action("Edit")"><img src="~/Areas/Administration/Content/img/edit-icon.png" /></a>
+                        <a href="@Url.Action("Delete")"><img src="~/Areas/Administration/Content/img/delete-icon.png" /></a>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table> 
+    </div>*@
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-primary" href="@Url.Action("Create")">Създай нова продукт</a>
+    </div>
+</div>

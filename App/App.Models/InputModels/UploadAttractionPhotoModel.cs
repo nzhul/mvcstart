@@ -9,7 +9,7 @@ namespace App.Models.InputModels
 {
     public class UploadArticlePhotoModel
     {
-        public int AttractionId { get; set; }
+        public int ArticleId { get; set; }
 
         public IEnumerable<HttpPostedFileBase> Files { get; set; }
     }

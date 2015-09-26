@@ -1,0 +1,13 @@
+﻿@model IEnumerable<App.Models.ViewModels.ItemCategoryViewModel>
+
+@foreach (var Category in Model)
+{
+    <tr>
+        <td>@Category.Name</td>
+        <td>
+            <a href="@Url.Action("Index", "Items", new { area = "", categoryId = Category.Id })"><img src="~/Areas/Administration/Content/img/preview-icon.png" /></a>
+            <a href="@Url.Action("Edit", new { @id = Category.Id })"><img src="~/Areas/Administration/Content/img/edit-icon.png" /></a>
+            <a href="@Url.Action("Delete", new { @id = Category.Id })"><img src="~/Areas/Administration/Content/img/delete-icon.png" /></a>
+        </td>
+    </tr>
+}

@@ -9,14 +9,14 @@ namespace App.Web.Models
 {
     public class LayoutModel
     {
-        private IEnumerable<ItemCategoryViewModel> roomCategories;
-        private IEnumerable<ArticleViewModel> attractions;
+        private IEnumerable<ItemCategoryViewModel> itemCategories;
+        private IEnumerable<ArticleViewModel> articles;
         private IEnumerable<PageViewModel> pages;
 
         public LayoutModel()
         {
-            this.roomCategories = new List<ItemCategoryViewModel>();
-            this.attractions = new List<ArticleViewModel>();
+            this.itemCategories = new List<ItemCategoryViewModel>();
+            this.articles = new List<ArticleViewModel>();
             this.pages = new List<PageViewModel>();
         }
 
@@ -26,16 +26,16 @@ namespace App.Web.Models
             set { this.pages = value; }
         }
 
-        public IEnumerable<ItemCategoryViewModel> RoomCategories 
+        public IEnumerable<ItemCategoryViewModel> ItemCategories 
         {
-            get { return this.roomCategories; }
-            set { this.roomCategories = value; }
+            get { return this.itemCategories; }
+            set { this.itemCategories = value; }
         }
 
-        public IEnumerable<ArticleViewModel> Attractions
+        public IEnumerable<ArticleViewModel> Articles
         {
-            get { return this.attractions; }
-            set { this.attractions = value; }
+            get { return this.articles; }
+            set { this.articles = value; }
         }
     }
 }

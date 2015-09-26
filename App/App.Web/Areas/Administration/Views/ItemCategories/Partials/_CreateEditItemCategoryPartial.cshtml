@@ -1,0 +1,31 @@
+﻿@model App.Models.InputModels.CreateItemCategoryInputModel
+
+<div class="row">
+    <div class="col-md-11">
+        <h3>@ViewBag.Title</h3>
+        <hr />
+    </div>
+</div>
+@using (Html.BeginForm((string)ViewBag.FormMode, "ItemCategories", FormMethod.Post, new { @class = "form-horizontal " }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-7">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "dab-input-label" })
+                @Html.ValidationMessageFor(model => model.Name)
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: Двуспален апартамент" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "dab-input-label" })
+                @Html.ValidationMessageFor(model => model.Description)
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Описание на продуктта" } })
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-warning">
+                    @ViewBag.FormModeText
+                </button>
+            </div>
+        </div>
+    </div>
+}

@@ -28,10 +28,10 @@ namespace App.Models.InputModels.FrontEnd
         public DateTime DepartureDate { get; set; }
 
         [Required(ErrorMessage = "Категорията е задължителна!")]
-        public int RoomCategoryId { get; set; }
+        public int ItemCategoryId { get; set; }
 
-        [Required(ErrorMessage = "Стаята е задължителна!")]
-        public int RoomId { get; set; }
+        [Required(ErrorMessage = "Продуктта е задължителна!")]
+        public int ItemId { get; set; }
 
         [Required(ErrorMessage = "Първото име е задължително!")]
         public string FirstName { get; set; }

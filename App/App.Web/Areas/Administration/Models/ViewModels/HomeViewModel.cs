@@ -6,28 +6,20 @@ using System.Web;
 
 namespace App.Web.Areas.Administration.Models.ViewModels
 {
-    public class HomeViewModel
-    {
-        private IEnumerable<ItemViewModel> availableRooms;
-        private IEnumerable<ItemViewModel> occupiedRooms;
+	public class HomeViewModel
+	{
+		private IEnumerable<ItemViewModel> items;
 
-        public HomeViewModel()
-        {
-            this.availableRooms = new List<ItemViewModel>();
-            this.occupiedRooms = new List<ItemViewModel>();
-        }
+		public HomeViewModel()
+		{
+			this.items = new List<ItemViewModel>();
+		}
 
 
-        public IEnumerable<ItemViewModel> AvailableRooms
-        {
-            get { return this.availableRooms; }
-            set { this.availableRooms = value; }
-        }
-
-        public IEnumerable<ItemViewModel> OccupiedRooms
-        {
-            get { return this.occupiedRooms; }
-            set { this.occupiedRooms = value; }
-        }
-    }
+		public IEnumerable<ItemViewModel> Items
+		{
+			get { return this.items; }
+			set { this.items = value; }
+		}
+	}
 }

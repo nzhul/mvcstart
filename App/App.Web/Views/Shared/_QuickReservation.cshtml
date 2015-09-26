@@ -21,7 +21,7 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <div class="pull-left rooms clearfix">
+                    <div class="pull-left items clearfix">
                         <label>ДЕЦА</label>
                         <select name="Childrens" class="pretty-select">
                             <option selected="selected" value="0">0</option>
@@ -34,14 +34,14 @@
                     </div>
                     <div class="pull-left clearfix dab-wide-select-box">
                         <label>ВИД СТАЯ</label>
-                        <select name="RoomCategoryId" class="pretty-select room-types-ddl">
+                        <select name="ItemCategoryId" class="pretty-select item-types-ddl">
                             <option selected="selected" value="0">Loading ...</option>
                         </select>
                     </div>
                     <div class="pull-left clearfix dab-wide-select-box">
                         <label>СТАЯ</label>
-                        <img class="dab-rooms-loading" style="display:none;position:absolute;float:right;margin-top:11px;margin-left:100px;" src="~/Content/images/loading.gif" />
-                        <select name="RoomId" class="pretty-select rooms-ddl">
+                        <img class="dab-items-loading" style="display:none;position:absolute;float:right;margin-top:11px;margin-left:100px;" src="~/Content/images/loading.gif" />
+                        <select name="ItemId" class="pretty-select items-ddl">
                             <option selected="selected" value="0">Loading ...</option>
                         </select>
                     </div>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="reservation-view-confirm" style="display:none;">
-                    <span class="label label-success">Стаята е свободна за резервация!</span>
+                    <span class="label label-success">Продуктта е свободна за резервация!</span>
                     <span class="label label-danger confirm-validation-label" style="display:none;">Моля попълнете полетата!</span>
                     <label>ИМЕ</label>
                     <input type="text" name="FirstName" />
@@ -82,9 +82,9 @@
                         <h5 class="text-center" style="color:black;font-size:12px;line-height:20px;text-transform:uppercase;margin-top:25px;">Ще се свържем с вас<br/> въжможно най-скоро!</h5>
                     </div>
                 </div>
-                <div class="reservation-view-notAvailableRoom" style="height:262px; display:none;">
+                <div class="reservation-view-notAvailableItem" style="height:262px; display:none;">
                     <div class="alert alert-danger text-center" style="margin-top:10px;">
-                        <strong>Стаята е заета за посочения период!</strong>
+                        <strong>Продуктта е заета за посочения период!</strong>
                         <hr />
                         Моля изберете друг период или се свържете с нас на телефон: 08887776585!
                     </div>

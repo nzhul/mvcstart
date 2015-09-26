@@ -13,12 +13,12 @@ namespace App.Models.InputModels
     {
         public CreateItemInputModel()
         {
-            this.AvailableRoomFeatures = new List<ItemFeature>();
+            this.AvailableItemFeatures = new List<ItemFeature>();
         }
 
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Името на стаята е задължително:")]
+        [Required(ErrorMessage = "Името на продуктта е задължително:")]
         [StringLength(250, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 250 символа, минимална 3")]
         [Display(Name = "Име:")]
         public string Name { get; set; }
@@ -56,10 +56,10 @@ namespace App.Models.InputModels
         public IEnumerable<Image> Images { get; set; }
 
         [Display(Name = "Екстри: ")]
-        public IEnumerable<ItemFeature> AvailableRoomFeatures { get; set; }
+        public IEnumerable<ItemFeature> AvailableItemFeatures { get; set; }
 
-        //[CheckList(1, false, ErrorMessage = "Моля изберете поне едно удобство!")]
-        [Display(Name = "Удобства:")]
-        public List<int> SelectedRoomFeatureIds { get; set; }
+        //[CheckList(1, false, ErrorMessage = "Моля изберете поне едно характеристика!")]
+        [Display(Name = "Характеристики:")]
+        public List<int> SelectedItemFeatureIds { get; set; }
     }
 }

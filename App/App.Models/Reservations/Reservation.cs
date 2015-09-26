@@ -8,10 +8,10 @@ namespace App.Models
 {
     public class Reservation
     {
-        private ICollection<Item> occupiedRooms;
+        private ICollection<Item> occupiedItems;
         public Reservation()
         {
-            this.occupiedRooms = new HashSet<Item>();
+            this.occupiedItems = new HashSet<Item>();
         }
 
         public int Id { get; set; }
@@ -20,7 +20,7 @@ namespace App.Models
 
         public DateTime DepartureDate { get; set; }
 
-        public int RoomsCount { get; set; }
+        public int ItemsCount { get; set; }
 
         public int Adults { get; set; }
 
@@ -38,10 +38,10 @@ namespace App.Models
 
         public string Email { get; set; }
 
-        public virtual ICollection<Item> OccupiedRooms
+        public virtual ICollection<Item> OccupiedItems
         {
-            get { return this.occupiedRooms; }
-            set { this.occupiedRooms = value; }
+            get { return this.occupiedItems; }
+            set { this.occupiedItems = value; }
         }
     }
 }

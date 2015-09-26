@@ -9,22 +9,22 @@ using System.Web.Mvc;
 
 namespace App.Web.Controllers
 {
-    public class GalleryController : BaseController
-    {
-        private readonly IImagesService imagesService;
-        private readonly IUoWData data;
+	public class GalleryController : BaseController
+	{
+		private readonly IImagesService imagesService;
+		private readonly IUoWData data;
 
-        public GalleryController()
-        {
-            this.data = new UoWData();
-            this.imagesService = new ImagesService(data);
-        }
+		public GalleryController()
+		{
+			this.data = new UoWData();
+			this.imagesService = new ImagesService(data);
+		}
 
-        // GET: Administration/Gallery
-        public ActionResult Index()
-        {
-            IEnumerable<Image> images = this.imagesService.GetGalleryImage();
-            return View(images);
-        }
-    }
+		// GET: Administration/Gallery
+		public ActionResult Index()
+		{
+			IEnumerable<Image> images = this.imagesService.GetGalleryImage();
+			return View(images);
+		}
+	}
 }

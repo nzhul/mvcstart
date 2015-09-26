@@ -1,4 +1,4 @@
-﻿@model IEnumerable<App.Models.ViewModels.RoomViewModel>
+﻿@model IEnumerable<App.Models.ViewModels.ItemViewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -10,7 +10,7 @@
     <!-- Content Section -->
     <div class="container margint60">
         <div class="row">
-            @Html.Partial("~/Views/Home/Partials/_HomeFeaturedRooms.cshtml", Model)
+            @Html.Partial("~/Views/Home/Partials/_HomeFeaturedItems.cshtml", Model)
         </div>
     </div>
 </div>

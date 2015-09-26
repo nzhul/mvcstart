@@ -1,21 +1,21 @@
 ﻿<script type="text/javascript">
         $(document).ready(function () {
 
-            LoadInitialRoomCategories();
+            LoadInitialItemCategories();
 
-            LoadInitialRooms();
+            LoadInitialItems();
 
-            $(".quick-reservation-container").on('change', '.room-types-ddl', function () {
-                LoadRoomsFromSelectedCategory(this.value);
+            $(".quick-reservation-container").on('change', '.item-types-ddl', function () {
+                LoadItemsFromSelectedCategory(this.value);
             });
 
             $(".quick-reservation-container").on('click', '.res-submit', function () {
-                CheckRoomAvailability();
+                CheckItemAvailability();
             });
 
             $(".quick-reservation-container").on('click', '.reservation-back-btn', function () {
                 $(".reservation-view-loading").hide();
-                $(".reservation-view-notAvailableRoom").hide();
+                $(".reservation-view-notAvailableItem").hide();
                 $(".reservation-view-check").show();
             });
 
@@ -24,23 +24,23 @@
             });
         });
 
-        function LoadInitialRoomCategories() {
+        function LoadInitialItemCategories() {
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("GetInitialRoomCategories", "QuickReservations")',
+                url: '@Url.Action("GetInitialItemCategories", "QuickReservations")',
                 beforeSend: function () {
                     // Initialize loading if needed
                 },
-                success: function (roomCategories) {
-                    if (roomCategories.length > 0) {
+                success: function (itemCategories) {
+                    if (itemCategories.length > 0) {
                         var optionsToApped;
-                        for (var i = 0; i < roomCategories.length; i++) {
-                            var currentOption = '<option value="' + roomCategories[i].Value + '">' + roomCategories[i].Text + '</option>';
+                        for (var i = 0; i < itemCategories.length; i++) {
+                            var currentOption = '<option value="' + itemCategories[i].Value + '">' + itemCategories[i].Text + '</option>';
                             optionsToApped += currentOption;
                         }
-                        $(".room-types-ddl").empty().append(optionsToApped).selectOrDie("update");
+                        $(".item-types-ddl").empty().append(optionsToApped).selectOrDie("update");
                     } else {
-                        // DO something when there are no rooms in that category
+                        // DO something when there are no items in that category
                     }
                 },
                 error: function (ex) {
@@ -50,88 +50,88 @@
             return false;
         }
 
-        function LoadInitialRooms() {
+        function LoadInitialItems() {
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("GetInitialRooms", "QuickReservations")',
+                url: '@Url.Action("GetInitialItems", "QuickReservations")',
                 beforeSend: function () {
                     // Initialize loading if needed
                 },
-                success: function (rooms) {
-                    if (rooms.length > 0) {
+                success: function (items) {
+                    if (items.length > 0) {
                         var optionsToApped;
                         var isSelected;
                         var currentUrl = window.location.href;
-                        var roomId;
-                        if (currentUrl.indexOf('Rooms')) {
+                        var itemId;
+                        if (currentUrl.indexOf('Items')) {
                             var urlArray = currentUrl.split('/');
-                            roomId = urlArray[urlArray.length - 1];
+                            itemId = urlArray[urlArray.length - 1];
                         }
-                        for (var i = 0; i < rooms.length; i++) {
-                            if (rooms[i].Value == roomId) {
+                        for (var i = 0; i < items.length; i++) {
+                            if (items[i].Value == itemId) {
                                 isSelected = "selected=\"selected\"";
                             }
-                            var currentOption = '<option '+ isSelected +' value="' + rooms[i].Value + '">' + rooms[i].Text + '</option>';
+                            var currentOption = '<option '+ isSelected +' value="' + items[i].Value + '">' + items[i].Text + '</option>';
                             optionsToApped += currentOption;
                             isSelected = "";
                         }
-                        $(".rooms-ddl").empty().append(optionsToApped).selectOrDie("update");
+                        $(".items-ddl").empty().append(optionsToApped).selectOrDie("update");
                     } else {
-                        // DO something when there are no rooms in that category
+                        // DO something when there are no items in that category
                     }
                 },
                 error: function (ex) {
-                    console.log('Неуспешно листване на стаите! Моля свържете се с администратор!' + ex);
+                    console.log('Неуспешно листване на продуктите! Моля свържете се с администратор!' + ex);
                 }
             });
             return false;
         }
 
-        function LoadRoomsFromSelectedCategory(selectedCategoryId) {
+        function LoadItemsFromSelectedCategory(selectedCategoryId) {
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("GetRoomsFromSelectedCategory", "QuickReservations")',
+                url: '@Url.Action("GetItemsFromSelectedCategory", "QuickReservations")',
                 dataType: 'json',
                 data: { id: selectedCategoryId },
                 beforeSend: function () {
-                    $(".dab-rooms-loading").show();
+                    $(".dab-items-loading").show();
                 },
-                success: function (rooms) {
-                    console.log("Loading rooms from category ...");
-                    $(".dab-rooms-loading").hide();
-                    if (rooms.length > 0) {
+                success: function (items) {
+                    console.log("Loading items from category ...");
+                    $(".dab-items-loading").hide();
+                    if (items.length > 0) {
                         var optionsToApped;
                         var isSelected;
                         var currentUrl = window.location.href;
-                        var roomId;
-                        if (currentUrl.indexOf('Rooms')) {
+                        var itemId;
+                        if (currentUrl.indexOf('Items')) {
                             var urlArray = currentUrl.split('/');
-                            roomId = urlArray[urlArray.length - 1];
+                            itemId = urlArray[urlArray.length - 1];
                         }
-                        for (var i = 0; i < rooms.length; i++) {
-                            if (rooms[i].Value == roomId) {
+                        for (var i = 0; i < items.length; i++) {
+                            if (items[i].Value == itemId) {
                                 isSelected = "selected=\"selected\"";
                             }
-                            var currentOption = '<option value="' + rooms[i].Value + '">' + rooms[i].Text + '</option>';
+                            var currentOption = '<option value="' + items[i].Value + '">' + items[i].Text + '</option>';
                             optionsToApped += currentOption;
                             isSelected = "";
                         }
-                        $(".rooms-ddl").empty().append(optionsToApped).selectOrDie("update");
+                        $(".items-ddl").empty().append(optionsToApped).selectOrDie("update");
                     } else {
-                        // DO something when there are no rooms in that category
+                        // DO something when there are no items in that category
                     }
                 },
                 error: function (ex) {
-                    console.log('Неуспешно листване на стаите! Моля свържете се с администратор!' + ex);
+                    console.log('Неуспешно листване на продуктите! Моля свържете се с администратор!' + ex);
                 }
             });
             return false;
         }
 
-    function CheckRoomAvailability() {
+    function CheckItemAvailability() {
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("CheckRoomAvailability", "QuickReservations")',
+            url: '@Url.Action("CheckItemAvailability", "QuickReservations")',
             dataType: 'json',
             data: $('#ajax-reservation-form').serialize(),
             beforeSend: function () {
@@ -146,11 +146,11 @@
                     $(".reservation-view-confirm").show();
                 } else {
                     $(".reservation-view-loading").hide();
-                    $(".reservation-view-notAvailableRoom").show();
+                    $(".reservation-view-notAvailableItem").show();
                 }
             },
             error: function (ex) {
-                console.log('Неуспешна проверка дали стаята е свободна! Моля свържете се с администратор!' + ex);
+                console.log('Неуспешна проверка дали продуктта е свободна! Моля свържете се с администратор!' + ex);
             }
 
         });
@@ -167,7 +167,7 @@
             beforeSend: function () {
                 $(".reservation-view-confirm").hide();
                 $(".reservation-view-check").hide();
-                $(".reservation-view-notAvailableRoom").hide();
+                $(".reservation-view-notAvailableItem").hide();
                 $(".reservation-view-loading").show();
 
             },

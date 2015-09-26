@@ -1,0 +1,29 @@
+﻿@model App.Models.InputModels.CreateItemInputModel
+@{
+    ViewBag.Title = "Редактиране на Продукт";
+    ViewBag.FormModeText = "Запази";
+    ViewBag.FormMode = "Edit";
+}
+
+<div class="container">
+    @{Html.RenderPartial("Partials/_CreateEditItemPartial", Model);}
+</div>
+
+@section scripts {
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var currentImage = 1;
+        $("body").on("change", "input[name='files']", function () {
+            var pathToRemoveIcon = "@Url.Content("~/Content/images/delete.png")";
+            currentImage = currentImage + 1;
+            var htmlToAppend = '<div class="upload"><input type="file" name="files" id="file' + currentImage + '" /><img class="upload-img-remove-icon" src="' + pathToRemoveIcon + '" alt="Remove picture." /></div>';
+            $('.upload-container').append(htmlToAppend);
+        }).on("click", ".upload img", function () {
+            if ($(this).parent().siblings().length > 0) {
+                $(this).parent().remove();
+            }
+        });
+    });
+</script>    
+}

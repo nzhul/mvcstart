@@ -41,14 +41,14 @@ namespace App.Data.Service
 
         public int CreateArticle(CreateArticleInputModel inputModel)
         {
-            Article newAttraction = new Article();
-            newAttraction.Title = inputModel.Title;
-            newAttraction.Summary = inputModel.Summary;
-            newAttraction.Content = inputModel.Content;
-            newAttraction.DateAdded = DateTime.Now;
-            newAttraction.DisplayOrder = inputModel.DisplayOrder;
+            Article newArticle = new Article();
+            newArticle.Title = inputModel.Title;
+            newArticle.Summary = inputModel.Summary;
+            newArticle.Content = inputModel.Content;
+            newArticle.DateAdded = DateTime.Now;
+            newArticle.DisplayOrder = inputModel.DisplayOrder;
 
-            this.Data.Articles.Add(newAttraction);
+            this.Data.Articles.Add(newArticle);
             this.Data.SaveChanges();
 
             Image defaultImage = new Image
@@ -59,10 +59,10 @@ namespace App.Data.Service
                 DateAdded = DateTime.Now
             };
 
-            newAttraction.Image = defaultImage;
+            newArticle.Image = defaultImage;
             this.Data.SaveChanges();
 
-            return newAttraction.Id;
+            return newArticle.Id;
         }
 
         public bool ArticleExists(int id)
@@ -80,32 +80,32 @@ namespace App.Data.Service
 
         public CreateArticleInputModel GetArticleInputModelById(int id)
         {
-            Article dbAttraction = this.Data.Articles.Find(id);
-            return MapPageInputModel(dbAttraction);
+            Article dbArticle = this.Data.Articles.Find(id);
+            return MapPageInputModel(dbArticle);
         }
 
-        private CreateArticleInputModel MapPageInputModel(Article dbAttraction)
+        private CreateArticleInputModel MapPageInputModel(Article dbArticle)
         {
             CreateArticleInputModel model = new CreateArticleInputModel();
-            model.Id = dbAttraction.Id;
-            model.Title = dbAttraction.Title;
-            model.Summary = dbAttraction.Summary;
-            model.Content = dbAttraction.Content;
-            model.DisplayOrder = dbAttraction.DisplayOrder;
-            model.Image = dbAttraction.Image;
+            model.Id = dbArticle.Id;
+            model.Title = dbArticle.Title;
+            model.Summary = dbArticle.Summary;
+            model.Content = dbArticle.Content;
+            model.DisplayOrder = dbArticle.DisplayOrder;
+            model.Image = dbArticle.Image;
 
             return model;
         }
 
         public bool UpdateArticle(int id, CreateArticleInputModel inputModel)
         {
-            Article dbAttraction = this.Data.Articles.Find(id);
-            if (dbAttraction != null)
+            Article dbArticle = this.Data.Articles.Find(id);
+            if (dbArticle != null)
             {
-                dbAttraction.Title = inputModel.Title;
-                dbAttraction.Summary = inputModel.Summary;
-                dbAttraction.Content = inputModel.Content;
-                dbAttraction.DisplayOrder = inputModel.DisplayOrder;
+                dbArticle.Title = inputModel.Title;
+                dbArticle.Summary = inputModel.Summary;
+                dbArticle.Content = inputModel.Content;
+                dbArticle.DisplayOrder = inputModel.DisplayOrder;
 
                 this.Data.SaveChanges();
 
@@ -119,10 +119,10 @@ namespace App.Data.Service
 
         public bool DeleteArticle(int id)
         {
-            // TODO - Also delete the images for that attraction
+            // TODO - Also delete the images for that Article
 
-            var theAttraction = this.Data.Articles.Find(id);
-            if (theAttraction == null)
+            var theArticle = this.Data.Articles.Find(id);
+            if (theArticle == null)
             {
                 return false;
             }
@@ -139,12 +139,12 @@ namespace App.Data.Service
             ArticleViewModel model = new ArticleViewModel();
             if (this.ArticleExists(id))
             {
-                Article dbAttraction = this.Data.Articles.Find(id);
-                model = this.MapArticleViewModel(dbAttraction);
+                Article dbArticle = this.Data.Articles.Find(id);
+                model = this.MapArticleViewModel(dbArticle);
             }
             else
             {
-                model.Content = "Не съществува такава атракция!";
+                model.Content = "Не съществува такава статия!";
                 model.Title = "НЕСЪЩЕСТВУВАЩА АТКРАКЦИЯ!";
             }
 

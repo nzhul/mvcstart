@@ -12,7 +12,7 @@ namespace App.Data.Service
     public interface IReservationsService
     {
 
-        IEnumerable<ItemViewModel> GetAvailableRooms();
+        IEnumerable<ItemViewModel> GetAvailableItems();
 
         bool CreateReservation(CreateReservationInputModel inputModel);
 
@@ -24,9 +24,9 @@ namespace App.Data.Service
 
         IEnumerable<ReservationViewModel> GetPassedReservations();
 
-        bool IsRoomAvailable(CreateReservationInputModel inputModel);
+        bool IsItemAvailable(CreateReservationInputModel inputModel);
 
-        bool IsRoomAvailable(QuickReservationInputModel input);
+        bool IsItemAvailable(QuickReservationInputModel input);
 
         void ToggleReservationConfirmation(int reservationId, bool isReservationConfirmed);
 
@@ -34,7 +34,7 @@ namespace App.Data.Service
 
         CreateReservationInputModel GetReservationInputModelById(int id);
 
-        List<int> GetSelectedRoomIds(int id);
+        List<int> GetSelectedItemIds(int id);
 
         bool UpdateReservation(int id, CreateReservationInputModel inputModel);
 

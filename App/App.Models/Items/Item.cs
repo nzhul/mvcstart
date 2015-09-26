@@ -10,14 +10,14 @@ namespace App.Models
     {
         private ICollection<Image> images;
         private ICollection<ItemFeature> itemFeatures;
-        //private ICollection<Reservation> reservations;
+		private ICollection<Reservation> reservations;
 
-        public Item()
+		public Item()
         {
             this.images = new HashSet<Image>();
             this.itemFeatures = new HashSet<ItemFeature>();
-            //this.reservations = new HashSet<Reservation>();
-        }
+			this.reservations = new HashSet<Reservation>();
+		}
 
         public int Id { get; set; }
 
@@ -47,13 +47,13 @@ namespace App.Models
             set { this.images = value; }
         }
 
-        //public virtual ICollection<Reservation> Reservations
-        //{
-        //    get { return this.reservations; }
-        //    set { this.reservations = value; }
-        //}
+		public virtual ICollection<Reservation> Reservations
+		{
+			get { return this.reservations; }
+			set { this.reservations = value; }
+		}
 
-        public virtual ICollection<ItemFeature> ItemFeatures
+		public virtual ICollection<ItemFeature> ItemFeatures
         {
             get { return this.itemFeatures; }
             set { this.itemFeatures = value; }

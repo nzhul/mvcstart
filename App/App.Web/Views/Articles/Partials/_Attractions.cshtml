@@ -1,0 +1,14 @@
+﻿@model IEnumerable<App.Models.ViewModels.ArticleViewModel>
+
+
+    @foreach (var Article in Model)
+    {
+        var imagePath = Article.Image.ImagePath + "_indexThumb.jpg";
+        <div class="col-md-6">
+            <div class="home-Articles">
+                <a href="@Url.Action("Details", "Articles", new { id = Article.Id })"><img class="home-Articles-img" src="/@imagePath" alt="@Article.Title" /></a>
+                <a href="@Url.Action("Details", "Articles", new { id = Article.Id })" class="home-Articles-title">@Article.Title</a>
+                <p class="home-Articles-description">@Article.Summary</p>
+            </div>
+        </div>
+     }

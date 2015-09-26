@@ -1,29 +1,29 @@
-﻿@model IEnumerable<App.Models.ViewModels.RoomViewModel>
+﻿@model IEnumerable<App.Models.ViewModels.ItemViewModel>
 
-@foreach (var Room in Model)
+@foreach (var Item in Model)
 {
-    string imageSrc = Room.PrimaryImage.ImagePath + "_indexThumb.jpg";
-    <div class="col-lg-4 col-sm-6 dab-room-box">
-        <div class="home-room-box">
-            <div class="room-image">
-                <a href="@Url.Action("Details", "Rooms", new { id = @Room.Id })"><img alt="Room Images" class="img-responsive" src="/@imageSrc"></a>
-                <div class="home-room-details">
-                    <h5><a href="@Url.Action("Details", "Rooms", new { id = @Room.Id })">@Room.Name</a></h5>
+    string imageSrc = Item.PrimaryImage.ImagePath + "_indexThumb.jpg";
+    <div class="col-lg-4 col-sm-6 dab-item-box">
+        <div class="home-item-box">
+            <div class="item-image">
+                <a href="@Url.Action("Details", "Items", new { id = @Item.Id })"><img alt="Item Images" class="img-responsive" src="/@imageSrc"></a>
+                <div class="home-item-details">
+                    <h5><a href="@Url.Action("Details", "Items", new { id = @Item.Id })">@Item.Name</a></h5>
                     <div class="pull-left">
                         <ul>
-                            @foreach (var Feature in @Room.RoomFeature)
+                            @foreach (var Feature in @Item.ItemFeature)
                             {
                                 <li><i class="@Feature.IconName" data-toggle="tooltip" title="@Feature.Name"></i></li>
                             }
                         </ul>
                     </div>
-                    <div class="pull-right room-rating">
+                    <div class="pull-right item-rating">
                         <ul>
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
-                            @if (Room.Id % 2 == 0)
+                            @if (Item.Id % 2 == 0)
                             {
                                 <li><i class="fa fa-star inactive"></i></li>
                             }
@@ -36,14 +36,14 @@
                     </div>
                 </div>
             </div>
-            <div class="room-details">
-                <p>@Room.Summary <a href="@Url.Action("Details", "Rooms", new { id = @Room.Id })">[...]</a></p>
+            <div class="item-details">
+                <p>@Item.Summary <a href="@Url.Action("Details", "Items", new { id = @Item.Id })">[...]</a></p>
             </div>
-            <div class="room-bottom">
-                <div class="pull-left"><h4>@Room.Price лв<span class="room-bottom-time">/ Ден</span></h4></div>
+            <div class="item-bottom">
+                <div class="pull-left"><h4>@Item.Price лв<span class="item-bottom-time">/ Ден</span></h4></div>
                 <div class="pull-right">
                     <div class="button-style-1">
-                        <a href="@Url.Action("Details", "Rooms", new { id = @Room.Id })">РЕЗЕРВИРАЙ</a>
+                        <a href="@Url.Action("Details", "Items", new { id = @Item.Id })">РЕЗЕРВИРАЙ</a>
                     </div>
                 </div>
             </div>

@@ -30,8 +30,8 @@ namespace App.Data.Service
             versions.Add("_large", "width=1139&height=578&crop=auto&scale=both&format=jpg"); //Fit inside 1900x1200 area
 
             int categoryId = uploadData.CategoryId;
-            int roomId = uploadData.ItemId;
-            var theRoom = this.Data.Items.Find(roomId);
+            int itemId = uploadData.ItemId;
+            var theItem = this.Data.Items.Find(itemId);
 
             bool firstLoop = true;
             foreach (var file in uploadData.Files)
@@ -41,7 +41,7 @@ namespace App.Data.Service
                     var originalFileName = file.FileName.Split('.')[0].Replace(' ', '_');
                     var originalFileExtension = file.FileName.Split('.')[1];
 
-                    string uploadFolder = System.Web.HttpContext.Current.Server.MapPath("~/Uploads/" + categoryId + "/" + roomId);
+                    string uploadFolder = System.Web.HttpContext.Current.Server.MapPath("~/Uploads/" + categoryId + "/" + itemId);
                     if (!Directory.Exists(uploadFolder)) Directory.CreateDirectory(uploadFolder);
 
                     foreach (string suffix in versions.Keys)
@@ -54,7 +54,7 @@ namespace App.Data.Service
 
                     var newImage = new Image
                     {
-                        ImagePath = "Uploads\\" + categoryId + "\\" + roomId + "\\" + originalFileName,
+                        ImagePath = "Uploads\\" + categoryId + "\\" + itemId + "\\" + originalFileName,
                         ImageExtension = originalFileExtension,
                         IsPrimary = false,
                         DateAdded = DateTime.Now
@@ -62,11 +62,11 @@ namespace App.Data.Service
 
                     if (firstLoop)
                     {
-                        theRoom.Images.First(image => image.IsPrimary == true).IsPrimary = false;
+                        theItem.Images.First(image => image.IsPrimary == true).IsPrimary = false;
                         newImage.IsPrimary = true;
                     }
 
-                    theRoom.Images.Add(newImage);
+                    theItem.Images.Add(newImage);
                     this.Data.SaveChanges();
                 }
 
@@ -77,18 +77,18 @@ namespace App.Data.Service
         }
 
 
-        public bool MakePrimary(int imageId, int roomId)
+        public bool MakePrimary(int imageId, int itemId)
         {
-            var theRoom = this.Data.Items.Find(roomId);
-            if (theRoom == null)
+            var theItem = this.Data.Items.Find(itemId);
+            if (theItem == null)
             {
                 return false;
             }
 
-            var oldPrimary = theRoom.Images.FirstOrDefault(image => image.IsPrimary);
+            var oldPrimary = theItem.Images.FirstOrDefault(image => image.IsPrimary);
             oldPrimary.IsPrimary = false;
 
-            var newPrimary = theRoom.Images.FirstOrDefault(image => image.Id == imageId);
+            var newPrimary = theItem.Images.FirstOrDefault(image => image.Id == imageId);
             newPrimary.IsPrimary = true;
 
             this.Data.SaveChanges();
@@ -105,8 +105,8 @@ namespace App.Data.Service
             versions.Add("_detailsSmallThumb", "width=77&height=61&crop=auto&format=jpg"); //Fit inside 400x400 area, jpeg
             versions.Add("_large", "width=827&crop=auto&format=jpg");
 
-            int attractionId = uploadData.AttractionId;
-            var theAttraction = this.Data.Articles.Find(attractionId);
+            int ArticleId = uploadData.ArticleId;
+            var theArticle = this.Data.Articles.Find(ArticleId);
 
             foreach (var file in uploadData.Files)
             {
@@ -115,7 +115,7 @@ namespace App.Data.Service
                     var originalFileName = file.FileName.Split('.')[0].Replace(' ', '_');
                     var originalFileExtension = file.FileName.Split('.')[1];
 
-                    string uploadFolder = System.Web.HttpContext.Current.Server.MapPath("~/Uploads/Attractions/" + attractionId);
+                    string uploadFolder = System.Web.HttpContext.Current.Server.MapPath("~/Uploads/Articles/" + ArticleId);
                     if (!Directory.Exists(uploadFolder)) Directory.CreateDirectory(uploadFolder);
 
                     foreach (string suffix in versions.Keys)
@@ -127,13 +127,13 @@ namespace App.Data.Service
 
                     var newImage = new Image
                     {
-                        ImagePath = "Uploads\\Attractions\\" + attractionId + "\\" + originalFileName,
+                        ImagePath = "Uploads\\Articles\\" + ArticleId + "\\" + originalFileName,
                         ImageExtension = originalFileExtension,
                         IsPrimary = true,
                         DateAdded = DateTime.Now,
                     };
 
-                    theAttraction.Image = newImage;
+                    theArticle.Image = newImage;
                     this.Data.SaveChanges();
                 }
             }
@@ -142,13 +142,13 @@ namespace App.Data.Service
         }
 
 
-        public IEnumerable<Image> GetRandomRoomImages()
+        public IEnumerable<Image> GetRandomItemImages()
         {
-            Item randomRoom = this.Data.Items.All().OrderBy(r => Guid.NewGuid()).FirstOrDefault();
+            Item randomItem = this.Data.Items.All().OrderBy(r => Guid.NewGuid()).FirstOrDefault();
 
-            if (randomRoom != null)
+            if (randomItem != null)
             {
-                return randomRoom.Images.Where(i => !i.ImagePath.EndsWith("no-image"));
+                return randomItem.Images.Where(i => !i.ImagePath.EndsWith("no-image"));
             }
             else
             {

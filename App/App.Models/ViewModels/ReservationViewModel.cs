@@ -5,10 +5,10 @@ namespace App.Models.ViewModels
 {
 	public class ReservationViewModel
     {
-        private ICollection<Item> occupiedRooms;
+        private ICollection<Item> occupiedItems;
         public ReservationViewModel()
         {
-            this.occupiedRooms = new HashSet<Item>();
+            this.occupiedItems = new HashSet<Item>();
         }
 
         public int Id { get; set; }
@@ -27,10 +27,10 @@ namespace App.Models.ViewModels
 
         public string Email { get; set; }
 
-        public virtual ICollection<Item> OccupiedRooms
+        public virtual ICollection<Item> OccupiedItems
         {
-            get { return this.occupiedRooms; }
-            set { this.occupiedRooms = value; }
+            get { return this.occupiedItems; }
+            set { this.occupiedItems = value; }
         }
     }
 }

@@ -44,9 +44,9 @@
             </div>
             <div class="form-group">
                 <div class="col-md-4" style="padding: 0 5px 0 0px;">
-                    @Html.LabelFor(model => model.RoomsCount, new { @class = "dab-input-label" })
-                    @Html.ValidationMessageFor(model => model.RoomsCount)
-                    @Html.EditorFor(model => model.RoomsCount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.ItemsCount, new { @class = "dab-input-label" })
+                    @Html.ValidationMessageFor(model => model.ItemsCount)
+                    @Html.EditorFor(model => model.ItemsCount, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
                 <div class="col-md-4" style="padding: 0 5px 0 5px;">
                     @Html.LabelFor(model => model.Adults, new { @class = "dab-input-label" })
@@ -65,21 +65,21 @@
                 @Html.CheckBoxFor(model => model.IsConfirmed, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <hr style="height:2px;background:gray;" />
-            <h3>Стаи:</h3>
+            <h3>Продукти:</h3>
             <div class="form-group">
                 @{
     int count = 0;
     string isChecked = "";
-    foreach (var availableRoom in Model.AvailableRooms)
+    foreach (var availableItem in Model.AvailableItems)
     {
-        if (Model.SelectedRoomIds != null && Model.SelectedRoomIds.Contains(availableRoom.Id))
+        if (Model.SelectedItemIds != null && Model.SelectedItemIds.Contains(availableItem.Id))
         {
             isChecked = "checked=checked";
         }
 
         <div style="float:left; margin:5px;">
-            <input name="SelectedRoomIds" id="Dynamic @count" @isChecked type="checkbox" value="@availableRoom.Id" />
-            <label for="Dynamic @count" class="dab-input-label"> @availableRoom.Name (@availableRoom.RoomNumber)</label>
+            <input name="SelectedItemIds" id="Dynamic @count" @isChecked type="checkbox" value="@availableItem.Id" />
+            <label for="Dynamic @count" class="dab-input-label"> @availableItem.Name</label>
         </div>
         count++;
         isChecked = "";

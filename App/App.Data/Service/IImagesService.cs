@@ -17,7 +17,7 @@ namespace App.Data.Service
 
         bool MakePrimary(int imageId, int productId);
 
-        IEnumerable<Image> GetRandomRoomImages();
+        IEnumerable<Image> GetRandomItemImages();
 
         bool UploadGalleryImage(HttpPostedFileBase file);
 

@@ -1,0 +1,10 @@
+﻿@model App.Models.InputModels.CreateItemFeatureInputModel
+@{
+    ViewBag.Title = "Редактиране на Характеристика";
+    ViewBag.FormModeText = "Запази";
+    ViewBag.FormMode = "Edit";
+}
+
+<div class="container">
+    @{Html.RenderPartial("Partials/_CreateEditItemFeaturePartial", Model);}
+</div>

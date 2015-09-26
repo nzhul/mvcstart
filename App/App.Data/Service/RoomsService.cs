@@ -32,61 +32,61 @@ namespace App.Data.Service
 
         public CreateItemInputModel GetItemInputModelById(int id)
         {
-            Item room = this.Data.Items.Find(id);
-            return MapRoomInputModel(room);
+            Item item = this.Data.Items.Find(id);
+            return MapItemInputModel(item);
         }
 
-        private CreateItemInputModel MapRoomInputModel(Item room)
+        private CreateItemInputModel MapItemInputModel(Item item)
         {
             CreateItemInputModel model = new CreateItemInputModel();
-            model.Id = room.Id;
-            model.Name = room.Name;
-            model.IsFeatured = room.IsFeatured;
-            model.Price = room.Price;
-            model.Summary = room.Summary;
-            model.Description = room.Description;
-            model.DisplayOrder = room.DisplayOrder;
-            model.IsPriceVisible = room.IsPriceVisible;
-            model.SelectedCategoryId = room.ItemCategoryId;
-            model.Images = room.Images;
-            model.AvailableRoomFeatures = room.ItemFeatures;
+            model.Id = item.Id;
+            model.Name = item.Name;
+            model.IsFeatured = item.IsFeatured;
+            model.Price = item.Price;
+            model.Summary = item.Summary;
+            model.Description = item.Description;
+            model.DisplayOrder = item.DisplayOrder;
+            model.IsPriceVisible = item.IsPriceVisible;
+            model.SelectedCategoryId = item.ItemCategoryId;
+            model.Images = item.Images;
+            model.AvailableItemFeatures = item.ItemFeatures;
 
             return model;
         }
 
-        public IEnumerable<ItemViewModel> GetRooms(int? categoryId)
+        public IEnumerable<ItemViewModel> GetItems(int? categoryId)
         {
-            IQueryable<Item> roomsQueriable = this.Data.Items.All().OrderBy(r => r.IsFeatured).AsQueryable();
+            IQueryable<Item> itemsQueriable = this.Data.Items.All().OrderBy(r => r.IsFeatured).AsQueryable();
 
             if (categoryId != null)
             {
-                roomsQueriable = roomsQueriable.Where(r => r.ItemCategoryId == categoryId);
+                itemsQueriable = itemsQueriable.Where(r => r.ItemCategoryId == categoryId);
             }
 
 
-            IEnumerable<ItemViewModel> rooms = roomsQueriable.Select(this.Mapper.MapItemViewModel);
-            return rooms;
+            IEnumerable<ItemViewModel> items = itemsQueriable.Select(this.Mapper.MapItemViewModel);
+            return items;
         }
 
-        public bool CreateRoom(CreateItemInputModel room)
+        public bool CreateItem(CreateItemInputModel item)
         {
-            Item newRoom = new Item();
-            newRoom.Name = room.Name;
-            newRoom.IsFeatured = room.IsFeatured;
-            newRoom.Price = room.Price;
-            newRoom.DateAdded = DateTime.Now;
-            newRoom.Summary = room.Summary;
-            newRoom.Description = room.Description;
-            newRoom.DisplayOrder = room.DisplayOrder;
-            newRoom.IsPriceVisible = room.IsPriceVisible;
-            newRoom.ItemCategoryId = room.SelectedCategoryId;
+            Item newItem = new Item();
+            newItem.Name = item.Name;
+            newItem.IsFeatured = item.IsFeatured;
+            newItem.Price = item.Price;
+            newItem.DateAdded = DateTime.Now;
+            newItem.Summary = item.Summary;
+            newItem.Description = item.Description;
+            newItem.DisplayOrder = item.DisplayOrder;
+            newItem.IsPriceVisible = item.IsPriceVisible;
+            newItem.ItemCategoryId = item.SelectedCategoryId;
 
-            if (room.SelectedRoomFeatureIds != null && room.SelectedRoomFeatureIds.Count > 0)
+            if (item.SelectedItemFeatureIds != null && item.SelectedItemFeatureIds.Count > 0)
             {
-                for (int i = 0; i < room.SelectedRoomFeatureIds.Count; i++)
+                for (int i = 0; i < item.SelectedItemFeatureIds.Count; i++)
                 {
-                    var theRoomFeature = this.Data.ItemFeatures.Find(room.SelectedRoomFeatureIds[i]);
-                    newRoom.ItemFeatures.Add(theRoomFeature);
+                    var theItemFeature = this.Data.ItemFeatures.Find(item.SelectedItemFeatureIds[i]);
+                    newItem.ItemFeatures.Add(theItemFeature);
                 }
             }
 
@@ -98,16 +98,16 @@ namespace App.Data.Service
                 DateAdded = DateTime.Now
             };
 
-            this.Data.Items.Add(newRoom);
+            this.Data.Items.Add(newItem);
             this.Data.SaveChanges();
 
-            newRoom.Images.Add(defaultImage);
+            newItem.Images.Add(defaultImage);
             this.Data.SaveChanges();
 
             return true;
         }
 
-        public bool RoomExists(int id)
+        public bool ItemExists(int id)
         {
             if (id <= 0)
             {
@@ -136,13 +136,13 @@ namespace App.Data.Service
         }
 
 
-        public IEnumerable<ItemCategoryViewModel> GetRoomCategories()
+        public IEnumerable<ItemCategoryViewModel> GetItemCategories()
         {
-            IEnumerable<ItemCategoryViewModel> roomCategories = this.Data.ItemCategories.All().Select(MapRoomCategoriesViewModel);
-            return roomCategories;
+            IEnumerable<ItemCategoryViewModel> itemCategories = this.Data.ItemCategories.All().Select(MapItemCategoriesViewModel);
+            return itemCategories;
         }
 
-        private ItemCategoryViewModel MapRoomCategoriesViewModel(ItemCategory itemCategory)
+        private ItemCategoryViewModel MapItemCategoriesViewModel(ItemCategory itemCategory)
         {
             ItemCategoryViewModel model = new ItemCategoryViewModel();
             model.Id = itemCategory.Id;
@@ -156,46 +156,46 @@ namespace App.Data.Service
         }
 
 
-        public int CreateRoomCategory(CreateItemCategoryInputModel roomCategory)
+        public int CreateItemCategory(CreateItemCategoryInputModel itemCategory)
         {
-            ItemCategory newRoomCategory = new ItemCategory();
-            newRoomCategory.Name = roomCategory.Name;
-            newRoomCategory.DisplayOrder = roomCategory.DisplayOrder;
-            newRoomCategory.Description = roomCategory.Description;
-            newRoomCategory.DateAdded = DateTime.Now;
+            ItemCategory newItemCategory = new ItemCategory();
+            newItemCategory.Name = itemCategory.Name;
+            newItemCategory.DisplayOrder = itemCategory.DisplayOrder;
+            newItemCategory.Description = itemCategory.Description;
+            newItemCategory.DateAdded = DateTime.Now;
 
-            this.Data.ItemCategories.Add(newRoomCategory);
+            this.Data.ItemCategories.Add(newItemCategory);
             this.Data.SaveChanges();
 
-            return newRoomCategory.Id;
+            return newItemCategory.Id;
         }
 
 
-        public CreateItemCategoryInputModel GetRoomCategoryInputModelById(int id)
+        public CreateItemCategoryInputModel GetItemCategoryInputModelById(int id)
         {
-            ItemCategory roomCategory = this.Data.ItemCategories.Find(id);
-            return MapRoomCategoryInputModel(roomCategory);
+            ItemCategory itemCategory = this.Data.ItemCategories.Find(id);
+            return MapItemCategoryInputModel(itemCategory);
         }
 
-        private CreateItemCategoryInputModel MapRoomCategoryInputModel(ItemCategory roomCategory)
+        private CreateItemCategoryInputModel MapItemCategoryInputModel(ItemCategory itemCategory)
         {
             CreateItemCategoryInputModel model = new CreateItemCategoryInputModel();
-            model.Description = roomCategory.Description;
-            model.DisplayOrder = roomCategory.DisplayOrder;
-            model.Name = roomCategory.Name;
+            model.Description = itemCategory.Description;
+            model.DisplayOrder = itemCategory.DisplayOrder;
+            model.Name = itemCategory.Name;
 
             return model;
         }
 
 
-        public bool UpdateRoomCategory(int id, CreateItemCategoryInputModel roomCategory)
+        public bool UpdateItemCategory(int id, CreateItemCategoryInputModel itemCategory)
         {
-            ItemCategory dbRoomCategory = this.Data.ItemCategories.Find(id);
-            if (dbRoomCategory != null)
+            ItemCategory dbItemCategory = this.Data.ItemCategories.Find(id);
+            if (dbItemCategory != null)
             {
-                dbRoomCategory.Description = roomCategory.Description;
-                dbRoomCategory.DisplayOrder = roomCategory.DisplayOrder;
-                dbRoomCategory.Name = roomCategory.Name;
+                dbItemCategory.Description = itemCategory.Description;
+                dbItemCategory.DisplayOrder = itemCategory.DisplayOrder;
+                dbItemCategory.Name = itemCategory.Name;
 
                 this.Data.SaveChanges();
 
@@ -207,34 +207,34 @@ namespace App.Data.Service
             }
         }
         
-        public bool UpdateRoom(int id, CreateItemInputModel inputModel)
+        public bool UpdateItem(int id, CreateItemInputModel inputModel)
         {
-            Item dbRoom = this.Data.Items.Find(id);
-            if (dbRoom != null)
+            Item dbItem = this.Data.Items.Find(id);
+            if (dbItem != null)
             {
-                dbRoom.DisplayOrder = inputModel.DisplayOrder;
-                dbRoom.IsFeatured = inputModel.IsFeatured;
-                dbRoom.IsPriceVisible = inputModel.IsPriceVisible;
-                dbRoom.Description = inputModel.Description;
-                dbRoom.Name = inputModel.Name;
-                dbRoom.Price = inputModel.Price;
-                dbRoom.ItemCategoryId = inputModel.SelectedCategoryId;
-                dbRoom.Summary = inputModel.Summary;
+                dbItem.DisplayOrder = inputModel.DisplayOrder;
+                dbItem.IsFeatured = inputModel.IsFeatured;
+                dbItem.IsPriceVisible = inputModel.IsPriceVisible;
+                dbItem.Description = inputModel.Description;
+                dbItem.Name = inputModel.Name;
+                dbItem.Price = inputModel.Price;
+                dbItem.ItemCategoryId = inputModel.SelectedCategoryId;
+                dbItem.Summary = inputModel.Summary;
 
-                // Delete all RoomFeatures
-                foreach (var subCategory in dbRoom.ItemFeatures.ToList())
+                // Delete all ItemFeatures
+                foreach (var subCategory in dbItem.ItemFeatures.ToList())
                 {
-                    dbRoom.ItemFeatures.Remove(subCategory);
+                    dbItem.ItemFeatures.Remove(subCategory);
                 }
                 this.Data.SaveChanges();
 
-                // Insert The New RoomFeatures
-                if (inputModel.SelectedRoomFeatureIds != null && inputModel.SelectedRoomFeatureIds.Count > 0)
+                // Insert The New ItemFeatures
+                if (inputModel.SelectedItemFeatureIds != null && inputModel.SelectedItemFeatureIds.Count > 0)
                 {
-                    for (int i = 0; i < inputModel.SelectedRoomFeatureIds.Count; i++)
+                    for (int i = 0; i < inputModel.SelectedItemFeatureIds.Count; i++)
                     {
-                        var theRoomFeature = this.Data.ItemFeatures.Find(inputModel.SelectedRoomFeatureIds[i]);
-                        dbRoom.ItemFeatures.Add(theRoomFeature);
+                        var theItemFeature = this.Data.ItemFeatures.Find(inputModel.SelectedItemFeatureIds[i]);
+                        dbItem.ItemFeatures.Add(theItemFeature);
                     }
                 }
 
@@ -249,24 +249,24 @@ namespace App.Data.Service
         }
 
 
-        public IEnumerable<ItemFeatureViewModel> GetRoomFeatures()
+        public IEnumerable<ItemFeatureViewModel> GetItemFeatures()
         {
-            IEnumerable<ItemFeatureViewModel> roomFeatures = this.Data.ItemFeatures.All().Select(MapRoomFeaturesViewModel);
-            return roomFeatures;
+            IEnumerable<ItemFeatureViewModel> itemFeatures = this.Data.ItemFeatures.All().Select(MapItemFeaturesViewModel);
+            return itemFeatures;
         }
 
-        private ItemFeatureViewModel MapRoomFeaturesViewModel(ItemFeature roomFeature)
+        private ItemFeatureViewModel MapItemFeaturesViewModel(ItemFeature itemFeature)
         {
             ItemFeatureViewModel model = new ItemFeatureViewModel();
-            model.Id = roomFeature.Id;
-            model.Name = roomFeature.Name;
-            model.IconName = roomFeature.IconName;
+            model.Id = itemFeature.Id;
+            model.Name = itemFeature.Name;
+            model.IconName = itemFeature.IconName;
 
             return model;
         }
 
 
-        public int CreateRoomFeature(CreateItemFeatureInputModel featureInput)
+        public int CreateItemFeature(CreateItemFeatureInputModel featureInput)
         {
             ItemFeature newFeature = new ItemFeature();
             newFeature.Name = featureInput.Name;
@@ -278,28 +278,28 @@ namespace App.Data.Service
             return newFeature.Id;
         }
 
-        public CreateItemFeatureInputModel GetRoomFeatureInputModelById(int id)
+        public CreateItemFeatureInputModel GetItemFeatureInputModelById(int id)
         {
-            ItemFeature roomFeature = this.Data.ItemFeatures.Find(id);
-            return MapRoomFeatureInputModel(roomFeature);
+            ItemFeature itemFeature = this.Data.ItemFeatures.Find(id);
+            return MapItemFeatureInputModel(itemFeature);
         }
 
-        private CreateItemFeatureInputModel MapRoomFeatureInputModel(ItemFeature roomFeature)
+        private CreateItemFeatureInputModel MapItemFeatureInputModel(ItemFeature itemFeature)
         {
             CreateItemFeatureInputModel model = new CreateItemFeatureInputModel();
-            model.Id = roomFeature.Id;
-            model.Name = roomFeature.Name;
-            model.IconName = roomFeature.IconName;
+            model.Id = itemFeature.Id;
+            model.Name = itemFeature.Name;
+            model.IconName = itemFeature.IconName;
             return model;
         }
 
-        public bool UpdateRoomFeature(int id, CreateItemFeatureInputModel roomFeature)
+        public bool UpdateItemFeature(int id, CreateItemFeatureInputModel itemFeature)
         {
-            ItemFeature dbRoomFeature = this.Data.ItemFeatures.Find(id);
-            if (dbRoomFeature != null)
+            ItemFeature dbItemFeature = this.Data.ItemFeatures.Find(id);
+            if (dbItemFeature != null)
             {
-                dbRoomFeature.Name = roomFeature.Name;
-                dbRoomFeature.IconName = roomFeature.IconName;
+                dbItemFeature.Name = itemFeature.Name;
+                dbItemFeature.IconName = itemFeature.IconName;
 
                 this.Data.SaveChanges();
 
@@ -312,10 +312,10 @@ namespace App.Data.Service
         }
 
 
-        public bool DeleteRoomFeature(int id)
+        public bool DeleteItemFeature(int id)
         {
-            var theRoomFeature = this.Data.ItemFeatures.Find(id);
-            if (theRoomFeature == null)
+            var theItemFeature = this.Data.ItemFeatures.Find(id);
+            if (theItemFeature == null)
             {
                 return false;
             }
@@ -327,24 +327,24 @@ namespace App.Data.Service
         }
 
 
-        public IEnumerable<ItemFeature> GetAvailableRoomFeatures()
+        public IEnumerable<ItemFeature> GetAvailableItemFeatures()
         {
             return this.Data.ItemFeatures.All();
         }
 
 
-        public List<int> GetSelectedRoomFeatureIds(int id)
+        public List<int> GetSelectedItemFeatureIds(int id)
         {
-            Item dbRoom = this.Data.Items.Find(id);
+            Item dbItem = this.Data.Items.Find(id);
 
-            List<int> selectedRoomFeatureIds = new List<int>();
+            List<int> selectedItemFeatureIds = new List<int>();
 
-            foreach (var subCategory in dbRoom.ItemFeatures)
+            foreach (var subCategory in dbItem.ItemFeatures)
             {
-                selectedRoomFeatureIds.Add(subCategory.Id);
+                selectedItemFeatureIds.Add(subCategory.Id);
             }
 
-            return selectedRoomFeatureIds;
+            return selectedItemFeatureIds;
         }
 
         public bool DeleteImage(int imageId)
@@ -380,19 +380,19 @@ namespace App.Data.Service
         }
 
 
-        public bool DeleteRoom(int id)
+        public bool DeleteItem(int id)
         {
-            Item dbRoom = this.Data.Items.Find(id);
+            Item dbItem = this.Data.Items.Find(id);
 
-            var dbRoomImagesClone = dbRoom.Images.Where(i => !i.ImagePath.Contains("noimage")).ToList();
+            var dbItemImagesClone = dbItem.Images.Where(i => !i.ImagePath.Contains("noimage")).ToList();
 
-            foreach (var roomImage in dbRoomImagesClone)
+            foreach (var itemImage in dbItemImagesClone)
             {
-                this.DeleteImage(roomImage.Id);
+                this.DeleteImage(itemImage.Id);
             }
             this.Data.SaveChanges();
 
-            this.Data.Items.Delete(dbRoom);
+            this.Data.Items.Delete(dbItem);
             this.Data.SaveChanges();
 
             return true;
