@@ -6,4 +6,4 @@ MVC Start
 > The idea is that you have almost complete generic backend ready for use and extend and you are only left to create the front end of the site
 > This project is usefull for sites that will have content such as: products, product categories, product features, product images, news, custom pages, gallery.
 
-> [!Imgur](http://i.imgur.com/v6Knkhf.png)
+> ![Imgur](http://i.imgur.com/v6Knkhf.png)
